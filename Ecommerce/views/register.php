@@ -1,94 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/ProjekAkhir/Ecommerce/assets/css/login.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exclusive – Sign Up</title>
+  <link rel="stylesheet" href="/ProjekAkhir/Ecommerce/assets/css/register.css" />
 </head>
 <body>
-    <div class="container">
 
-  
+  <!-- NAVBAR -->
   <nav class="navbar">
     <span class="logo">Exclusive</span>
-
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Contact</a>
-      <a href="#">About</a>
-      <a href="#">Sign Up</a>
-    </div>
-
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="login.php" class="active">Sign Up</a></li>
+    </ul>
     <div class="search-box">
       <input type="text" placeholder="What are you looking for?" />
-      <span class="icon">🔍</span>
+      <button class="search-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>   
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
     </div>
   </nav>
 
-  
-  <div class="content">
+  <!-- MAIN SECTION -->
+  <main class="main-section">
 
-    
-    <div class="left">
-     
-      (SVG kamu tetap di sini, tidak diubah)
+    <!-- LEFT: Illustration -->
+    <div class="illustration-side">
+      <svg class="hero-svg" viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg">
+        <!-- Phone body -->
+        <rect x="55" y="50" width="95" height="170" rx="12" fill="#1a1a1a"/>
+        <rect x="61" y="65" width="83" height="140" rx="5" fill="#111827"/>
+        <rect x="90" y="57" width="22" height="5" rx="2.5" fill="#333"/>
+        <circle cx="102" cy="224" r="5" fill="#444"/>
+        <rect x="63" y="67" width="79" height="136" rx="4" fill="#1e3a5f"/>
+
+        <!-- Shopping cart -->
+        <g transform="translate(108, 145)">
+          <rect x="0" y="15" width="105" height="75" rx="5" fill="#b0b0b0"/>
+          <rect x="0" y="15" width="105" height="14" rx="5" fill="#959595"/>
+          <line x1="0" y1="36" x2="105" y2="36" stroke="#888" stroke-width="1"/>
+          <rect x="8" y="40" width="32" height="5" rx="2" fill="#777"/>
+          <rect x="8" y="50" width="55" height="5" rx="2" fill="#777"/>
+          <rect x="8" y="60" width="44" height="5" rx="2" fill="#777"/>
+          <line x1="8" y1="28" x2="20" y2="17" stroke="#ccc" stroke-width="2.5"/>
+          <line x1="97" y1="28" x2="85" y2="17" stroke="#ccc" stroke-width="2.5"/>
+          <line x1="8" y1="90" x2="20" y2="90" stroke="#ccc" stroke-width="2.5"/>
+          <line x1="97" y1="90" x2="85" y2="90" stroke="#ccc" stroke-width="2.5"/>
+          <circle cx="22" cy="96" r="7" fill="#999"/>
+          <circle cx="83" cy="96" r="7" fill="#999"/>
+          <circle cx="22" cy="96" r="3" fill="#777"/>
+          <circle cx="83" cy="96" r="3" fill="#777"/>
+        </g>
+
+        <!-- Shadow -->
+        <ellipse cx="160" cy="258" rx="70" ry="12" fill="#a0a0c0" opacity="0.3"/>
+
+        <!-- Pink bag -->
+        <rect x="118" y="208" width="48" height="54" rx="5" fill="#e896c8"/>
+        <rect x="130" y="197" width="16" height="14" rx="3" fill="#c060a0"/>
+        <line x1="130" y1="197" x2="130" y2="210" stroke="#a04080" stroke-width="1.5"/>
+        <line x1="146" y1="197" x2="146" y2="210" stroke="#a04080" stroke-width="1.5"/>
+
+        <!-- Purple bag -->
+        <rect x="165" y="215" width="44" height="48" rx="5" fill="#b878d0"/>
+        <rect x="178" y="205" width="14" height="12" rx="3" fill="#9050b0"/>
+        <line x1="178" y1="205" x2="178" y2="216" stroke="#7030a0" stroke-width="1.5"/>
+        <line x1="192" y1="205" x2="192" y2="216" stroke="#7030a0" stroke-width="1.5"/>
+
+        <!-- Heart badge -->
+        <circle cx="62" cy="105" r="14" fill="#ff4d4d"/>
+        <text x="55" y="111" font-size="13" fill="white">♥</text>
+
+        <!-- Eye badge -->
+        <circle cx="62" cy="138" r="14" fill="#f5f5f5"/>
+        <text x="55" y="144" font-size="13" fill="#555">👁</text>
+      </svg>
     </div>
 
-    
-    <div class="right">
-      <div class="form-box">
-        <h2>Create an account</h2>
-        <p>Enter your details below</p>
+    <!-- RIGHT: Sign Up Form -->
+    <div class="form-side">
+      <div class="form-container">
+        <h1>Create an account</h1>
+        <p class="subtitle">Enter your details below</p>
 
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="Email or Phone Number">
-        <input type="password" placeholder="Password">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Name" />
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email or Phone Number" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" />
+        </div>
 
-        <button class="btn-primary">Create Account</button>
+        <button class="btn-primary" id="createBtn">Create Account</button>
 
         <button class="btn-google">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
           Sign up with Google
         </button>
 
-        <p class="login-text">
-          Already have account? <a href="#">Log in</a>
-        </p>
+        <p class="login-link">Already have account? <a href="login.php">Log in</a></p>
       </div>
     </div>
-  </div>
 
-  
+  </main>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-box">
-      <h3>Exclusive</h3>
-      <p>Subscribe</p>
-      <span>Get 10% off your first order</span>
+    <div class="footer-col">
+      <h3 class="footer-logo">Exclusive</h3>
+      <p class="footer-heading">Subscribe</p>
+      <p class="footer-sub">Get 10% off your first order</p>
+      <div class="email-subscribe">
+        <input type="email" placeholder="Enter your email" />
+        <button aria-label="Subscribe">&#10132;</button>
+      </div>
     </div>
 
-    <div class="footer-box">
-      <h4>Support</h4>
+    <div class="footer-col">
+      <p class="footer-heading">Support</p>
+      <p>111 Bijoy sarani, Dhaka,<br>DH 1515, Bangladesh.</p>
       <p>exclusive@gmail.com</p>
+      <p>+88015-88888-9999</p>
     </div>
 
-    <div class="footer-box">
-      <h4>Account</h4>
-      <p>Login / Register</p>
-      <p>Cart</p>
-      <p>Wishlist</p>
+    <div class="footer-col">
+      <p class="footer-heading">Account</p>
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Login / Register</a></li>
+        <li><a href="#">Cart</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Shop</a></li>
+      </ul>
     </div>
 
-    <div class="footer-box">
-      <h4>Quick Link</h4>
-      <p>Privacy Policy</p>
-      <p>Contact</p>
+    <div class="footer-col">
+      <p class="footer-heading">Quick Link</p>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </div>
 
-    <div class="footer-box">
-      <h4>Download App</h4>
+    <div class="footer-col">
+      <p class="footer-heading">Download App</p>
+      <p class="footer-sub">Save $3 with App New User Only</p>
+      <div class="app-badges">
+        <div class="qr-placeholder">▦</div>
+        <div class="store-buttons">
+          <a href="#" class="store-btn">Google Play</a>
+          <a href="#" class="store-btn">App Store</a>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
     </div>
   </footer>
 
-</div>
+  <script src="/ProjekAkhir/Ecommerce/assets/js/register.js"></script>
 </body>
 </html>
