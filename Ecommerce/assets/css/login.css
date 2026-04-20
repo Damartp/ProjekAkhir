@@ -1,0 +1,95 @@
+    body {
+    font-family: Arial;
+    margin: 0;
+    }
+
+
+    .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 48px;
+    border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+    font-size: 22px;
+    font-weight: bold;
+    }
+
+    .nav-links {
+    display: flex;
+    gap: 30px;
+    }
+
+    .nav-links a {
+    text-decoration: none;
+    color: #333;
+    }
+
+    .search-box {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    }
+
+
+    .content {
+    display: flex;
+    min-height: 420px;
+    }
+
+    .left {
+    flex: 1;
+    background: #cce8f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .form-box {
+    width: 300px;
+    }
+
+    .form-box input {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    }
+
+
+    .btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: #db4444;
+    color: white;
+    border: none;
+    }
+
+    .btn-google {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    }
+
+
+    .footer {
+    background: black;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 40px;
+    }
+
+    .footer-box h3, .footer-box h4 {
+    margin-bottom: 10px;
+    }
