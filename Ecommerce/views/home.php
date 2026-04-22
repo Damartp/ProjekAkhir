@@ -21,10 +21,10 @@
   <nav class="navbar">
     <span class="logo">Exclusive</span>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
+      <li><a href="home.php">Home</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">About</a></li>
-      <li><a href="signup.html">Sign Up</a></li>
+      <li><a href="register.php">Sign Up</a></li>
     </ul>
     <div class="nav-actions">
       <div class="search-box">
