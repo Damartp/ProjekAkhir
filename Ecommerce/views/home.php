@@ -35,11 +35,11 @@
           </svg>
         </button>
       </div>
-      <button class="icon-btn" aria-label="Wishlist">
+      <a href="wishlist.php" class="icon-btn" aria-label="Wishlist">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
-      </button>
+      </a>
       <button class="icon-btn cart-btn" aria-label="Cart" id="cartBtn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
@@ -59,12 +59,12 @@
         <li><a href="#">Woman's Fashion <span>›</span></a></li>
         <li><a href="#">Men's Fashion <span>›</span></a></li>
         <li><a href="#">Electronics</a></li>
-        <li><a href="#">Home & Lifestyle</a></li>
+        <li><a href="#">Home &amp; Lifestyle</a></li>
         <li><a href="#">Medicine</a></li>
-        <li><a href="#">Sports & Outdoor</a></li>
-        <li><a href="#">Baby's & Toys</a></li>
-        <li><a href="#">Groceries & Pets</a></li>
-        <li><a href="#">Health & Beauty</a></li>
+        <li><a href="#">Sports &amp; Outdoor</a></li>
+        <li><a href="#">Baby's &amp; Toys</a></li>
+        <li><a href="#">Groceries &amp; Pets</a></li>
+        <li><a href="#">Health &amp; Beauty</a></li>
       </ul>
     </aside>
 
@@ -78,7 +78,7 @@
               iPhone 14 Series
             </div>
             <h2>Up to 10%<br>off Voucher</h2>
-            <a href="#" class="slide-link">Shop Now →</a>
+            <a href="#section" class="slide-link">Shop Now →</a>
           </div>
           <div class="slide-image">
             <div class="phone-mockup">
@@ -90,6 +90,7 @@
           </div>
         </div>
       </div>
+
       <div class="slide" id="slide-1">
         <div class="slide-content">
           <div class="slide-text">
@@ -102,6 +103,7 @@
           </div>
         </div>
       </div>
+
       <div class="slide" id="slide-2">
         <div class="slide-content">
           <div class="slide-text">
@@ -114,6 +116,7 @@
           </div>
         </div>
       </div>
+
       <!-- Dots -->
       <div class="slider-dots">
         <button class="dot active" data-slide="0"></button>
@@ -127,6 +130,7 @@
   </section>
 
   <!-- ===================== FLASH SALES ===================== -->
+  <!-- id 1–5 sesuai PRODUCTS di home.js -->
   <section class="section flash-sales">
     <div class="section-label">
       <span class="label-bar"></span>
@@ -150,15 +154,17 @@
     </div>
 
     <div class="products-slider" id="flashSlider">
+
+      <!-- id=1 → HAVIT HV-G92 Gamepad -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-red">-40%</span>
           <div class="product-img gamepad-img">🎮</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="1" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('HAVIT HV-G92 Gamepad', 120)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(1)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">HAVIT HV-G92 Gamepad</p>
@@ -170,15 +176,16 @@
         </div>
       </div>
 
+      <!-- id=2 → AK-900 Wired Keyboard -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-red">-35%</span>
           <div class="product-img keyboard-img">⌨️</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="2" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('AK-900 Wired Keyboard', 960)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(2)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">AK-900 Wired Keyboard</p>
@@ -190,15 +197,16 @@
         </div>
       </div>
 
+      <!-- id=3 → IPS LCD Gaming Monitor -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-red">-30%</span>
           <div class="product-img monitor-img">🖥️</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="3" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('IPS LCD Gaming Monitor', 370)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(3)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">IPS LCD Gaming Monitor</p>
@@ -210,15 +218,16 @@
         </div>
       </div>
 
+      <!-- id=4 → S-Series Comfort Chair -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-red">-25%</span>
           <div class="product-img chair-img">🪑</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="4" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('S-Series Comfort Chair', 375)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(4)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">S-Series Comfort Chair</p>
@@ -230,15 +239,16 @@
         </div>
       </div>
 
+      <!-- id=5 → S-Series Gaming Laptop -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-red">-20%</span>
           <div class="product-img cpu-img">💻</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="5" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('S-Series Gaming Laptop', 699)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(5)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">S-Series Gaming Laptop</p>
@@ -249,6 +259,7 @@
           <div class="stars">★★★★★ <span class="review-count">(77)</span></div>
         </div>
       </div>
+
     </div>
 
     <div class="center-btn">
@@ -270,37 +281,19 @@
         <button class="arrow-btn" id="catNext">&#8594;</button>
       </div>
     </div>
-
     <div class="categories-grid" id="catSlider">
-      <div class="cat-card">
-        <div class="cat-icon">📱</div>
-        <p>Phones</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">🖥️</div>
-        <p>Computers</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">⌚</div>
-        <p>SmartWatch</p>
-      </div>
-      <div class="cat-card active">
-        <div class="cat-icon">📷</div>
-        <p>Camera</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">🎧</div>
-        <p>HeadPhones</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">🎮</div>
-        <p>Gaming</p>
-      </div>
+      <div class="cat-card"><div class="cat-icon">📱</div><p>Phones</p></div>
+      <div class="cat-card"><div class="cat-icon">🖥️</div><p>Computers</p></div>
+      <div class="cat-card"><div class="cat-icon">⌚</div><p>SmartWatch</p></div>
+      <div class="cat-card active"><div class="cat-icon">📷</div><p>Camera</p></div>
+      <div class="cat-card"><div class="cat-icon">🎧</div><p>HeadPhones</p></div>
+      <div class="cat-card"><div class="cat-icon">🎮</div><p>Gaming</p></div>
     </div>
     <hr class="divider" />
   </section>
 
   <!-- ===================== BEST SELLING ===================== -->
+  <!-- id 6–9 sesuai PRODUCTS di home.js -->
   <section class="section">
     <div class="section-label">
       <span class="label-bar"></span>
@@ -312,14 +305,16 @@
     </div>
 
     <div class="products-grid">
+
+      <!-- id=6 → The north coat -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img jacket-img">🧥</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="6" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Coat', 23)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(6)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">The north coat</p>
@@ -331,14 +326,15 @@
         </div>
       </div>
 
+      <!-- id=7 → Gucci duffle bag -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img bag-img">👜</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="7" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Gucci Bag', 960)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(7)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Gucci duffle bag</p>
@@ -350,14 +346,15 @@
         </div>
       </div>
 
+      <!-- id=8 → RGB liquid CPU Cooler -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img cpu2-img">🖥️</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="8" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('RGB Liquid CPU', 160)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(8)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">RGB liquid CPU Cooler</p>
@@ -369,14 +366,15 @@
         </div>
       </div>
 
+      <!-- id=9 → Small BookSelf -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img bookshelf-img">📚</div>
           <div class="product-actions">
-            <button class="wish-btn" aria-label="Wishlist">♥</button>
+            <button class="wish-btn" data-id="9" aria-label="Wishlist">♥</button>
             <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Bookshelf', 360)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(9)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Small BookSelf</p>
@@ -386,6 +384,7 @@
           <div class="stars">★★★★★ <span class="review-count">(65)</span></div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -413,7 +412,8 @@
   </section>
 
   <!-- ===================== EXPLORE PRODUCTS ===================== -->
-  <section class="section">
+  <!-- id 10–17 sesuai PRODUCTS di home.js -->
+  <section class="section" id="section">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">Our Products</span>
@@ -427,14 +427,16 @@
     </div>
 
     <div class="products-grid">
+
+      <!-- id=10 → Breed Dry Dog Food -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img dogfood-img">🐶</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="10" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Breed Dry Dog Food', 100)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(10)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Breed Dry Dog Food</p>
@@ -443,14 +445,15 @@
         </div>
       </div>
 
+      <!-- id=11 → CANON EOS DSLR Camera -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img camera-img">📷</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="11" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('CANON EOS DSLR Camera', 360)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(11)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">CANON EOS DSLR Camera</p>
@@ -459,14 +462,15 @@
         </div>
       </div>
 
+      <!-- id=12 → ASUS FHD Gaming Laptop -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img laptop-img">💻</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="12" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('ASUS FHD Gaming Laptop', 700)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(12)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">ASUS FHD Gaming Laptop</p>
@@ -475,14 +479,15 @@
         </div>
       </div>
 
+      <!-- id=13 → Curology Product Set -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img skincare-img">🧴</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="13" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Curology Product Set', 500)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(13)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Curology Product Set</p>
@@ -491,68 +496,81 @@
         </div>
       </div>
 
+      <!-- id=14 → Kids Electric Car -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-green">NEW</span>
           <div class="product-img car-img">🚗</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="14" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Kids Electric Car', 960)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(14)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Kids Electric Car</p>
-          <div class="product-price"><span class="price-new">$960</span><span class="price-old">$1160</span></div>
+          <div class="product-price">
+            <span class="price-new">$960</span>
+            <span class="price-old">$1160</span>
+          </div>
           <div class="stars">★★★★★ <span class="review-count">(65)</span></div>
           <div class="color-dots"><span class="dot-red"></span><span class="dot-dark"></span></div>
         </div>
       </div>
 
+      <!-- id=15 → Jr. Zoom Soccer Cleats -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-green">NEW</span>
           <div class="product-img shoes-img">👟</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="15" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Jr. Zoom Soccer Cleats', 1160)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(15)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Jr. Zoom Soccer Cleats</p>
-          <div class="product-price"><span class="price-new">$1160</span><span class="price-old">$1600</span></div>
+          <div class="product-price">
+            <span class="price-new">$1160</span>
+            <span class="price-old">$1600</span>
+          </div>
           <div class="stars">★★★★★ <span class="review-count">(35)</span></div>
           <div class="color-dots"><span class="dot-red"></span><span class="dot-gold"></span></div>
         </div>
       </div>
 
+      <!-- id=16 → GP11 Shooter USB Gamepad -->
       <div class="product-card">
         <div class="product-img-wrap">
           <span class="badge badge-green">NEW</span>
           <div class="product-img gamepad2-img">🎮</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="16" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('GP11 Shooter USB Gamepad', 660)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(16)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">GP11 Shooter USB Gamepad</p>
-          <div class="product-price"><span class="price-new">$660</span><span class="price-old">$1160</span></div>
+          <div class="product-price">
+            <span class="price-new">$660</span>
+            <span class="price-old">$1160</span>
+          </div>
           <div class="stars">★★★★★ <span class="review-count">(55)</span></div>
           <div class="color-dots"><span class="dot-red"></span><span class="dot-dark"></span></div>
         </div>
       </div>
 
+      <!-- id=17 → Quilted Satin Jacket -->
       <div class="product-card">
         <div class="product-img-wrap">
           <div class="product-img jacket2-img">🧥</div>
           <div class="product-actions">
-            <button class="wish-btn">♥</button>
-            <button class="view-btn">👁</button>
+            <button class="wish-btn" data-id="17" aria-label="Wishlist">♥</button>
+            <button class="view-btn" aria-label="View">👁</button>
           </div>
-          <button class="add-cart-btn" onclick="addToCart('Quilted Satin Jacket', 660)">Add To Cart</button>
+          <button class="add-cart-btn" onclick="addToCart(17)">Add To Cart</button>
         </div>
         <div class="product-info">
           <p class="product-name">Quilted Satin Jacket</p>
@@ -561,6 +579,7 @@
           <div class="color-dots"><span class="dot-green"></span><span class="dot-dark"></span></div>
         </div>
       </div>
+
     </div>
 
     <div class="center-btn">
@@ -577,7 +596,6 @@
     <h2 class="section-title" style="margin-bottom:24px;">New Arrival</h2>
 
     <div class="arrival-grid">
-      <!-- Big left card -->
       <div class="arrival-card arrival-big">
         <div class="arrival-bg ps5-bg">
           <div class="ps5-art">🎮</div>
@@ -589,9 +607,7 @@
         </div>
       </div>
 
-      <!-- Right column -->
       <div class="arrival-right">
-        <!-- Top right big -->
         <div class="arrival-card arrival-top-right">
           <div class="arrival-bg women-bg">
             <div class="women-art">👗</div>
@@ -603,7 +619,6 @@
           </div>
         </div>
 
-        <!-- Bottom two -->
         <div class="arrival-bottom">
           <div class="arrival-card arrival-small">
             <div class="arrival-bg speaker-bg">
@@ -660,25 +675,22 @@
         <button aria-label="Subscribe" onclick="subscribeEmail()">&#10132;</button>
       </div>
     </div>
-
     <div class="footer-col">
       <p class="footer-heading">Support</p>
       <p>111 Bijoy sarani, Dhaka,<br>DH 1515, Bangladesh.</p>
       <p>exclusive@gmail.com</p>
       <p>+88015-88888-9999</p>
     </div>
-
     <div class="footer-col">
       <p class="footer-heading">Account</p>
       <ul>
         <li><a href="#">My Account</a></li>
         <li><a href="#">Login / Register</a></li>
         <li><a href="#">Cart</a></li>
-        <li><a href="#">Wishlist</a></li>
+        <li><a href="wishlist.php">Wishlist</a></li>
         <li><a href="#">Shop</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <p class="footer-heading">Quick Link</p>
       <ul>
@@ -688,7 +700,6 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <p class="footer-heading">Download App</p>
       <p class="footer-sub">Save $3 with App New User Only</p>
