@@ -40,13 +40,13 @@
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </a>
-      <button class="icon-btn cart-btn" aria-label="Cart" id="cartBtn">
+      <a class="icon-btn cart-btn" aria-label="Cart" id="cartBtn" href="cart.php">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
         </svg>
         <span class="cart-count" id="cartCount">0</span>
-      </button>
+      </a>
     </div>
   </nav>
 
@@ -162,7 +162,7 @@
           <div class="product-img gamepad-img">🎮</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="1" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=1">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(1)">Add To Cart</button>
         </div>
@@ -183,7 +183,7 @@
           <div class="product-img keyboard-img">⌨️</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="2" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=2">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(2)">Add To Cart</button>
         </div>
@@ -204,7 +204,7 @@
           <div class="product-img monitor-img">🖥️</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="3" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=3">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(3)">Add To Cart</button>
         </div>
@@ -225,7 +225,7 @@
           <div class="product-img chair-img">🪑</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="4" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=4">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(4)">Add To Cart</button>
         </div>
@@ -246,7 +246,7 @@
           <div class="product-img cpu-img">💻</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="5" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=5">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(5)">Add To Cart</button>
         </div>
@@ -312,7 +312,7 @@
           <div class="product-img jacket-img">🧥</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="6" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=6">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(6)">Add To Cart</button>
         </div>
@@ -332,7 +332,7 @@
           <div class="product-img bag-img">👜</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="7" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=7">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(7)">Add To Cart</button>
         </div>
@@ -352,7 +352,7 @@
           <div class="product-img cpu2-img">🖥️</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="8" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=8">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(8)">Add To Cart</button>
         </div>
@@ -372,7 +372,7 @@
           <div class="product-img bookshelf-img">📚</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="9" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=9">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(9)">Add To Cart</button>
         </div>
@@ -434,7 +434,7 @@
           <div class="product-img dogfood-img">🐶</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="10" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=10">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(10)">Add To Cart</button>
         </div>
@@ -451,7 +451,7 @@
           <div class="product-img camera-img">📷</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="11" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=11">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(11)">Add To Cart</button>
         </div>
@@ -468,7 +468,7 @@
           <div class="product-img laptop-img">💻</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="12" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=12">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(12)">Add To Cart</button>
         </div>
@@ -485,7 +485,7 @@
           <div class="product-img skincare-img">🧴</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="13" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=13">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(13)">Add To Cart</button>
         </div>
@@ -503,7 +503,7 @@
           <div class="product-img car-img">🚗</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="14" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=14">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(14)">Add To Cart</button>
         </div>
@@ -525,7 +525,7 @@
           <div class="product-img shoes-img">👟</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="15" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=15">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(15)">Add To Cart</button>
         </div>
@@ -547,7 +547,7 @@
           <div class="product-img gamepad2-img">🎮</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="16" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=16">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(16)">Add To Cart</button>
         </div>
@@ -568,7 +568,7 @@
           <div class="product-img jacket2-img">🧥</div>
           <div class="product-actions">
             <button class="wish-btn" data-id="17" aria-label="Wishlist">♥</button>
-            <button class="view-btn" aria-label="View">👁</button>
+            <a class="view-btn" aria-label="View" href="details.php?id=17">👁</a>
           </div>
           <button class="add-cart-btn" onclick="addToCart(17)">Add To Cart</button>
         </div>

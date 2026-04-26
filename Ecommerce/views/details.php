@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exclusive – Cart</title>
-  <link rel="stylesheet" href="/ProjekAkhir/Ecommerce/assets/css/cart.css" />
+  <title>Exclusive – Product Detail</title>
+  <link rel="stylesheet" href="/ProjekAkhir/Ecommerce/assets/css/details.css" />
 </head>
 <body>
 
@@ -37,7 +37,7 @@
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </a>
-      <a href="cart.php" class="icon-btn cart-nav-btn active" aria-label="Cart">
+      <a href="cart.php" class="icon-btn" aria-label="Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -55,75 +55,108 @@
 
   <!-- ===================== BREADCRUMB ===================== -->
   <div class="breadcrumb">
-    <a href="home.php">Home</a>
+    <a href="home.php">Account</a>
     <span>/</span>
-    <span class="current">Cart</span>
+    <a href="#">Gaming</a>
+    <span>/</span>
+    <span class="current" id="breadcrumbName">Product</span>
   </div>
 
-  <!-- ===================== CART SECTION ===================== -->
+  <!-- ===================== PRODUCT DETAIL ===================== -->
   <main class="main-content">
+    <div class="product-detail-wrap">
 
-    <!-- Cart Table -->
-    <div class="cart-table-wrap">
-      <table class="cart-table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="cartTableBody">
-          <!-- Populated by cart.js -->
-        </tbody>
-      </table>
+      <!-- LEFT: Single Product Image -->
+      <div class="product-gallery">
+        <div class="main-img-wrap">
+          <div class="main-img" id="mainImg">📦</div>
+        </div>
+      </div>
 
-      <!-- Empty State -->
-      <div class="empty-cart" id="emptyCart" style="display:none;">
-        <div class="empty-icon">🛒</div>
-        <h3>Your cart is empty</h3>
-        <p>Looks like you haven't added anything yet.</p>
-        <a href="home.php" class="btn-red">Continue Shopping</a>
+      <!-- RIGHT: Product Info -->
+      <div class="product-info">
+        <h1 class="product-title" id="productName">Product Name</h1>
+
+        <div class="product-rating">
+          <span class="stars" id="productStars">★★★★★</span>
+          <span class="review-count" id="productReviews">(150 Reviews)</span>
+          <span class="in-stock">| In Stock</span>
+        </div>
+
+        <div class="product-price-detail" id="productPrice">$192.00</div>
+
+        <p class="product-desc" id="productDesc">
+          PlayStation 5 Controller Skin – High quality vinyl with air channel adhesive for easy bubble free install &amp; mess free removal. Pressure sensitive.
+        </p>
+
+        <hr class="divider" />
+
+        <!-- Colours -->
+        <div class="option-row">
+          <span class="option-label">Colours:</span>
+          <div class="color-options">
+            <button class="color-dot red active" data-color="red" title="Red"></button>
+            <button class="color-dot black" data-color="black" title="Black"></button>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="option-row">
+          <span class="option-label">Size:</span>
+          <div class="size-options">
+            <button class="size-btn" data-size="XS">XS</button>
+            <button class="size-btn" data-size="S">S</button>
+            <button class="size-btn active" data-size="M">M</button>
+            <button class="size-btn" data-size="L">L</button>
+            <button class="size-btn" data-size="XL">XL</button>
+          </div>
+        </div>
+
+        <!-- Qty + Buy Now + Wishlist -->
+        <div class="action-row">
+          <div class="qty-wrap">
+            <button class="qty-btn" id="qtyMinus">−</button>
+            <input class="qty-input" type="number" id="qtyInput" value="1" min="1" />
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button class="btn-red" id="buyNowBtn">Buy Now</button>
+          <button class="wish-detail-btn" id="wishDetailBtn" title="Add to Wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Delivery Info -->
+        <div class="delivery-box">
+          <div class="delivery-item">
+            <div class="delivery-icon">🚚</div>
+            <div class="delivery-text">
+              <strong>Free Delivery</strong>
+              <p>Enter your postal code for Delivery Availability</p>
+            </div>
+          </div>
+          <hr />
+          <div class="delivery-item">
+            <div class="delivery-icon">🔄</div>
+            <div class="delivery-text">
+              <strong>Return Delivery</strong>
+              <p>Free 30 Days Delivery Returns. <a href="#">Details</a></p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- Cart Actions -->
-    <div class="cart-actions" id="cartActions">
-      <a href="home.php" class="btn-outline">Return To Shop</a>
-      <button class="btn-outline" id="updateCartBtn">Update Cart</button>
+    <!-- ===================== RELATED ITEMS ===================== -->
+    <div class="section-label" style="margin-top:60px;">
+      <span class="label-bar"></span>
+      <span class="label-text">Related Item</span>
     </div>
 
-    <!-- Coupon + Cart Total -->
-    <div class="cart-bottom" id="cartBottom">
-
-      <!-- Coupon -->
-      <div class="coupon-wrap">
-        <input type="text" class="coupon-input" id="couponInput" placeholder="Coupon Code" />
-        <button class="btn-red" id="applyCouponBtn">Apply Coupon</button>
-      </div>
-
-      <!-- Cart Total -->
-      <div class="cart-total">
-        <h3>Cart Total</h3>
-        <div class="total-row">
-          <span>Subtotal:</span>
-          <span id="subtotalVal">$0</span>
-        </div>
-        <hr />
-        <div class="total-row">
-          <span>Shipping:</span>
-          <span class="free-shipping">Free</span>
-        </div>
-        <hr />
-        <div class="total-row total-final">
-          <span>Total:</span>
-          <span id="totalVal">$0</span>
-        </div>
-        <a href="checkout.php" class="btn-red btn-full" id="checkoutBtn">Procees to checkout</a>
-      </div>
-
+    <div class="related-grid" id="relatedGrid">
+      <!-- Populated by JS -->
     </div>
 
   </main>
@@ -195,6 +228,6 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
-  <script src="/ProjekAkhir/Ecommerce/assets/js/cart.js"></script>
+  <script src="/ProjekAkhir/Ecommerce/assets/js/details.js"></script>
 </body>
 </html>
