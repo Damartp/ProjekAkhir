@@ -1,6 +1,5 @@
 // ===========================
-// DATA PRODUK — HARUS SAMA PERSIS DENGAN PRODUCTS DI home.js
-// dan data-id di home.html
+// DATA PRODUK — SAMA PERSIS DENGAN home.js & details.js & cart.js
 // ===========================
 
 const allProducts = [
@@ -25,7 +24,6 @@ const allProducts = [
 
 // ===========================
 // WISHLIST (localStorage key: 'exclusive_wishlist')
-// Format: array of number id → [1, 3, 7]
 // ===========================
 
 function getWishlist() {
@@ -47,7 +45,7 @@ function addToWishlist(id) {
 
 // ===========================
 // CART (localStorage key: 'exclusive_cart')
-// Format: [{id, name, price, qty}] — SAMA dengan home.js
+// Format: [{id, name, price, qty}]
 // ===========================
 
 function getCart() {
@@ -64,7 +62,6 @@ function addToCart(product) {
   if (existing) {
     existing.qty = (existing.qty || 1) + 1;
   } else {
-    // Format sama persis dengan home.js
     cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
   }
   saveCart(cart);
@@ -110,11 +107,13 @@ function renderWishlist() {
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
         <button class="delete-btn" onclick="handleDelete(${p.id})" title="Hapus">✕</button>
-        <button class="view-btn">👁</button>
+        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">👁</a>
         <button class="add-cart-btn" onclick="handleAddToCart(${p.id})">🛒 Add To Cart</button>
       </div>
       <div class="product-info">
-        <p class="product-name">${p.name}</p>
+        <a href="details.php?id=${p.id}">
+          <p class="product-name">${p.name}</p>
+        </a>
         <div class="product-price">
           <span class="price-new">$${p.price}</span>
           ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ''}
@@ -144,11 +143,13 @@ function renderJFY() {
       <div class="product-img-wrap">
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
-        <button class="view-btn">👁</button>
+        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">👁</a>
         <button class="add-cart-btn" onclick="handleJFYWishlist(${p.id}, this)">♡ Add To Wishlist</button>
       </div>
       <div class="product-info">
-        <p class="product-name">${p.name}</p>
+        <a href="details.php?id=${p.id}">
+          <p class="product-name">${p.name}</p>
+        </a>
         <div class="product-price">
           <span class="price-new">$${p.price}</span>
           ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ''}
@@ -191,7 +192,12 @@ function handleJFYWishlist(id, btn) {
   const product = allProducts.find(p => p.id === id);
   if (!product) return;
   addToWishlist(id);
-  if (btn) { btn.textContent = '♥ Added!'; btn.style.background = '#db4444'; btn.style.color = '#fff'; btn.style.opacity = '1'; }
+  if (btn) {
+    btn.textContent        = '♥ Added!';
+    btn.style.background   = '#db4444';
+    btn.style.color        = '#fff';
+    btn.style.opacity      = '1';
+  }
   showToast(`❤️ "${product.name}" ditambahkan ke wishlist!`);
   setTimeout(() => { renderWishlist(); renderJFY(); }, 800);
 }
@@ -241,6 +247,11 @@ const searchBtn   = document.querySelector('.search-btn');
 const searchInput = document.getElementById('searchInput');
 
 if (searchBtn && searchInput) {
-  searchBtn.addEventListener('click', () => { const q = searchInput.value.trim(); if (q) alert(`Searching: "${q}"`); });
-  searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') searchBtn.click(); });
+  searchBtn.addEventListener('click', () => {
+    const q = searchInput.value.trim();
+    if (q) alert(`Searching: "${q}"`);
+  });
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchBtn.click();
+  });
 }

@@ -10,7 +10,10 @@
 
   <!-- ===================== TOP BAR ===================== -->
   <div class="topbar">
-    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="#">Shop Now</a></p>
+    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%!
+      <a href="#section-explore">Shop Now</a>
+      <!-- Shop Now → scroll ke Explore Products -->
+    </p>
     <select>
       <option>English</option>
       <option>Bahasa</option>
@@ -19,11 +22,13 @@
 
   <!-- ===================== NAVBAR ===================== -->
   <nav class="navbar">
-    <span class="logo">Exclusive</span>
+    <span class="logo"><a href="home.php">Exclusive</a></span>
     <ul class="nav-links">
       <li><a href="home.php">Home</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="#section-features">Contact</a></li>
+      <!-- Contact → scroll ke bagian fitur/service paling bawah -->
+      <li><a href="#section-arrival">About</a></li>
+      <!-- About → scroll ke New Arrival -->
       <li><a href="register.php">Sign Up</a></li>
     </ul>
     <div class="nav-actions">
@@ -51,20 +56,22 @@
   </nav>
 
   <!-- ===================== HERO SECTION ===================== -->
-  <section class="hero-section">
+  <section class="hero-section" id="section-hero">
 
     <!-- Sidebar Categories -->
     <aside class="sidebar">
       <ul>
-        <li><a href="#">Woman's Fashion <span>›</span></a></li>
-        <li><a href="#">Men's Fashion <span>›</span></a></li>
-        <li><a href="#">Electronics</a></li>
-        <li><a href="#">Home &amp; Lifestyle</a></li>
-        <li><a href="#">Medicine</a></li>
-        <li><a href="#">Sports &amp; Outdoor</a></li>
-        <li><a href="#">Baby's &amp; Toys</a></li>
-        <li><a href="#">Groceries &amp; Pets</a></li>
-        <li><a href="#">Health &amp; Beauty</a></li>
+        <li><a href="#section-arrival">Woman's Fashion <span>›</span></a></li>
+        <!-- Woman's Fashion → New Arrival (Women's Collections) -->
+        <li><a href="#section-arrival">Men's Fashion <span>›</span></a></li>
+        <li><a href="#section-explore">Electronics</a></li>
+        <!-- Electronics → Explore Products -->
+        <li><a href="#section-arrival">Home &amp; Lifestyle</a></li>
+        <li><a href="#section-explore">Medicine</a></li>
+        <li><a href="#section-explore">Sports &amp; Outdoor</a></li>
+        <li><a href="#section-explore">Baby's &amp; Toys</a></li>
+        <li><a href="#section-explore">Groceries &amp; Pets</a></li>
+        <li><a href="#section-explore">Health &amp; Beauty</a></li>
       </ul>
     </aside>
 
@@ -78,7 +85,8 @@
               iPhone 14 Series
             </div>
             <h2>Up to 10%<br>off Voucher</h2>
-            <a href="#section" class="slide-link">Shop Now →</a>
+            <a href="#section-explore" class="slide-link">Shop Now →</a>
+            <!-- Shop Now → scroll ke Explore Products -->
           </div>
           <div class="slide-image">
             <div class="phone-mockup">
@@ -96,7 +104,8 @@
           <div class="slide-text">
             <div class="slide-brand">🎮 Gaming</div>
             <h2>Best Gaming<br>Gear 2024</h2>
-            <a href="#" class="slide-link">Shop Now →</a>
+            <a href="#section-flash" class="slide-link">Shop Now →</a>
+            <!-- Shop Now → scroll ke Flash Sales -->
           </div>
           <div class="slide-image">
             <div class="gamepad-mockup">🎮</div>
@@ -109,7 +118,8 @@
           <div class="slide-text">
             <div class="slide-brand">🎵 Audio</div>
             <h2>Premium Sound<br>Experience</h2>
-            <a href="#" class="slide-link">Shop Now →</a>
+            <a href="#section-arrival" class="slide-link">Shop Now →</a>
+            <!-- Shop Now → scroll ke New Arrival (Speakers) -->
           </div>
           <div class="slide-image">
             <div class="speaker-mockup">🔊</div>
@@ -130,8 +140,7 @@
   </section>
 
   <!-- ===================== FLASH SALES ===================== -->
-  <!-- id 1–5 sesuai PRODUCTS di home.js -->
-  <section class="section flash-sales">
+  <section class="section flash-sales" id="section-flash">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">Today's</span>
@@ -167,7 +176,7 @@
           <button class="add-cart-btn" onclick="addToCart(1)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">HAVIT HV-G92 Gamepad</p>
+          <a href="details.php?id=1"><p class="product-name">HAVIT HV-G92 Gamepad</p></a>
           <div class="product-price">
             <span class="price-new">$120</span>
             <span class="price-old">$160</span>
@@ -188,7 +197,7 @@
           <button class="add-cart-btn" onclick="addToCart(2)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">AK-900 Wired Keyboard</p>
+          <a href="details.php?id=2"><p class="product-name">AK-900 Wired Keyboard</p></a>
           <div class="product-price">
             <span class="price-new">$960</span>
             <span class="price-old">$1160</span>
@@ -209,7 +218,7 @@
           <button class="add-cart-btn" onclick="addToCart(3)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">IPS LCD Gaming Monitor</p>
+          <a href="details.php?id=3"><p class="product-name">IPS LCD Gaming Monitor</p></a>
           <div class="product-price">
             <span class="price-new">$370</span>
             <span class="price-old">$400</span>
@@ -230,7 +239,7 @@
           <button class="add-cart-btn" onclick="addToCart(4)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">S-Series Comfort Chair</p>
+          <a href="details.php?id=4"><p class="product-name">S-Series Comfort Chair</p></a>
           <div class="product-price">
             <span class="price-new">$375</span>
             <span class="price-old">$400</span>
@@ -251,7 +260,7 @@
           <button class="add-cart-btn" onclick="addToCart(5)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">S-Series Gaming Laptop</p>
+          <a href="details.php?id=5"><p class="product-name">S-Series Gaming Laptop</p></a>
           <div class="product-price">
             <span class="price-new">$699</span>
             <span class="price-old">$900</span>
@@ -263,13 +272,14 @@
     </div>
 
     <div class="center-btn">
-      <a href="#" class="btn-red">View All Products</a>
+      <a href="#section-explore" class="btn-red">View All Products</a>
+      <!-- View All Products → scroll ke Explore Products -->
     </div>
     <hr class="divider" />
   </section>
 
   <!-- ===================== BROWSE BY CATEGORY ===================== -->
-  <section class="section">
+  <section class="section" id="section-category">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">Categories</span>
@@ -282,26 +292,27 @@
       </div>
     </div>
     <div class="categories-grid" id="catSlider">
-      <div class="cat-card"><div class="cat-icon">📱</div><p>Phones</p></div>
-      <div class="cat-card"><div class="cat-icon">🖥️</div><p>Computers</p></div>
-      <div class="cat-card"><div class="cat-icon">⌚</div><p>SmartWatch</p></div>
-      <div class="cat-card active"><div class="cat-icon">📷</div><p>Camera</p></div>
-      <div class="cat-card"><div class="cat-icon">🎧</div><p>HeadPhones</p></div>
-      <div class="cat-card"><div class="cat-icon">🎮</div><p>Gaming</p></div>
+      <div class="cat-card"><a href="#section-explore"><div class="cat-icon">📱</div><p>Phones</p></a></div>
+      <div class="cat-card"><a href="#section-explore"><div class="cat-icon">🖥️</div><p>Computers</p></a></div>
+      <div class="cat-card"><a href="#section-explore"><div class="cat-icon">⌚</div><p>SmartWatch</p></a></div>
+      <div class="cat-card active"><a href="#section-explore"><div class="cat-icon">📷</div><p>Camera</p></a></div>
+      <div class="cat-card"><a href="#section-explore"><div class="cat-icon">🎧</div><p>HeadPhones</p></a></div>
+      <div class="cat-card"><a href="#section-flash"><div class="cat-icon">🎮</div><p>Gaming</p></a></div>
+      <!-- Gaming → scroll ke Flash Sales (banyak produk gaming) -->
     </div>
     <hr class="divider" />
   </section>
 
   <!-- ===================== BEST SELLING ===================== -->
-  <!-- id 6–9 sesuai PRODUCTS di home.js -->
-  <section class="section">
+  <section class="section" id="section-bestsell">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">This Month</span>
     </div>
     <div class="section-header">
       <h2 class="section-title">Best Selling Products</h2>
-      <a href="#" class="btn-red">View All</a>
+      <a href="#section-explore" class="btn-red">View All</a>
+      <!-- View All → scroll ke Explore Products -->
     </div>
 
     <div class="products-grid">
@@ -317,7 +328,7 @@
           <button class="add-cart-btn" onclick="addToCart(6)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">The north coat</p>
+          <a href="details.php?id=6"><p class="product-name">The north coat</p></a>
           <div class="product-price">
             <span class="price-new">$23</span>
             <span class="price-old">$260</span>
@@ -337,7 +348,7 @@
           <button class="add-cart-btn" onclick="addToCart(7)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Gucci duffle bag</p>
+          <a href="details.php?id=7"><p class="product-name">Gucci duffle bag</p></a>
           <div class="product-price">
             <span class="price-new">$960</span>
             <span class="price-old">$1160</span>
@@ -357,7 +368,7 @@
           <button class="add-cart-btn" onclick="addToCart(8)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">RGB liquid CPU Cooler</p>
+          <a href="details.php?id=8"><p class="product-name">RGB liquid CPU Cooler</p></a>
           <div class="product-price">
             <span class="price-new">$160</span>
             <span class="price-old">$170</span>
@@ -377,7 +388,7 @@
           <button class="add-cart-btn" onclick="addToCart(9)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Small BookSelf</p>
+          <a href="details.php?id=9"><p class="product-name">Small BookSelf</p></a>
           <div class="product-price">
             <span class="price-new">$360</span>
           </div>
@@ -389,7 +400,7 @@
   </section>
 
   <!-- ===================== MUSIC BANNER ===================== -->
-  <section class="music-banner">
+  <section class="music-banner" id="section-music">
     <div class="music-banner-content">
       <div class="music-text">
         <div class="section-label">
@@ -403,7 +414,8 @@
           <div class="music-time"><span class="mt-val" id="mMinutes">59</span><span class="mt-label">Minutes</span></div>
           <div class="music-time"><span class="mt-val" id="mSeconds">35</span><span class="mt-label">Seconds</span></div>
         </div>
-        <a href="#" class="btn-green">Buy Now!</a>
+        <a href="#section-explore" class="btn-green">Buy Now!</a>
+        <!-- Buy Now → scroll ke Explore Products -->
       </div>
       <div class="music-img">
         <div class="speaker-art">🔊</div>
@@ -412,8 +424,7 @@
   </section>
 
   <!-- ===================== EXPLORE PRODUCTS ===================== -->
-  <!-- id 10–17 sesuai PRODUCTS di home.js -->
-  <section class="section" id="section">
+  <section class="section" id="section-explore">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">Our Products</span>
@@ -439,7 +450,7 @@
           <button class="add-cart-btn" onclick="addToCart(10)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Breed Dry Dog Food</p>
+          <a href="details.php?id=10"><p class="product-name">Breed Dry Dog Food</p></a>
           <div class="product-price"><span class="price-new">$100</span></div>
           <div class="stars">★★★☆☆ <span class="review-count">(35)</span></div>
         </div>
@@ -456,7 +467,7 @@
           <button class="add-cart-btn" onclick="addToCart(11)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">CANON EOS DSLR Camera</p>
+          <a href="details.php?id=11"><p class="product-name">CANON EOS DSLR Camera</p></a>
           <div class="product-price"><span class="price-new">$360</span></div>
           <div class="stars">★★★★★ <span class="review-count">(95)</span></div>
         </div>
@@ -473,7 +484,7 @@
           <button class="add-cart-btn" onclick="addToCart(12)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">ASUS FHD Gaming Laptop</p>
+          <a href="details.php?id=12"><p class="product-name">ASUS FHD Gaming Laptop</p></a>
           <div class="product-price"><span class="price-new">$700</span></div>
           <div class="stars">★★★★★ <span class="review-count">(325)</span></div>
         </div>
@@ -490,7 +501,7 @@
           <button class="add-cart-btn" onclick="addToCart(13)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Curology Product Set</p>
+          <a href="details.php?id=13"><p class="product-name">Curology Product Set</p></a>
           <div class="product-price"><span class="price-new">$500</span></div>
           <div class="stars">★★★★★ <span class="review-count">(145)</span></div>
         </div>
@@ -508,7 +519,7 @@
           <button class="add-cart-btn" onclick="addToCart(14)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Kids Electric Car</p>
+          <a href="details.php?id=14"><p class="product-name">Kids Electric Car</p></a>
           <div class="product-price">
             <span class="price-new">$960</span>
             <span class="price-old">$1160</span>
@@ -530,7 +541,7 @@
           <button class="add-cart-btn" onclick="addToCart(15)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Jr. Zoom Soccer Cleats</p>
+          <a href="details.php?id=15"><p class="product-name">Jr. Zoom Soccer Cleats</p></a>
           <div class="product-price">
             <span class="price-new">$1160</span>
             <span class="price-old">$1600</span>
@@ -552,7 +563,7 @@
           <button class="add-cart-btn" onclick="addToCart(16)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">GP11 Shooter USB Gamepad</p>
+          <a href="details.php?id=16"><p class="product-name">GP11 Shooter USB Gamepad</p></a>
           <div class="product-price">
             <span class="price-new">$660</span>
             <span class="price-old">$1160</span>
@@ -573,7 +584,7 @@
           <button class="add-cart-btn" onclick="addToCart(17)">Add To Cart</button>
         </div>
         <div class="product-info">
-          <p class="product-name">Quilted Satin Jacket</p>
+          <a href="details.php?id=17"><p class="product-name">Quilted Satin Jacket</p></a>
           <div class="product-price"><span class="price-new">$660</span></div>
           <div class="stars">★★★★★ <span class="review-count">(55)</span></div>
           <div class="color-dots"><span class="dot-green"></span><span class="dot-dark"></span></div>
@@ -583,12 +594,13 @@
     </div>
 
     <div class="center-btn">
-      <a href="#" class="btn-red">View All Products</a>
+      <a href="#section-hero" class="btn-red">View All Products</a>
+      <!-- View All → scroll balik ke atas -->
     </div>
   </section>
 
   <!-- ===================== NEW ARRIVAL ===================== -->
-  <section class="section new-arrival">
+  <section class="section new-arrival" id="section-arrival">
     <div class="section-label">
       <span class="label-bar"></span>
       <span class="label-text">Featured</span>
@@ -603,7 +615,8 @@
         <div class="arrival-info">
           <h3>PlayStation 5</h3>
           <p>Black and White version of the PS5<br>coming out on sale.</p>
-          <a href="#">Shop Now</a>
+          <a href="#section-flash">Shop Now</a>
+          <!-- Shop Now → Flash Sales (ada produk gaming) -->
         </div>
       </div>
 
@@ -615,7 +628,8 @@
           <div class="arrival-info">
             <h3>Women's Collections</h3>
             <p>Featured woman collections that give you another vibe.</p>
-            <a href="#">Shop Now</a>
+            <a href="#section-bestsell">Shop Now</a>
+            <!-- Shop Now → Best Selling (ada jaket/coat) -->
           </div>
         </div>
 
@@ -627,7 +641,8 @@
             <div class="arrival-info">
               <h3>Speakers</h3>
               <p>Amazon wireless speakers</p>
-              <a href="#">Shop Now</a>
+              <a href="#section-explore">Shop Now</a>
+              <!-- Shop Now → Explore Products -->
             </div>
           </div>
           <div class="arrival-card arrival-small">
@@ -637,7 +652,8 @@
             <div class="arrival-info">
               <h3>Perfume</h3>
               <p>GUCCI INTENSE OUD EDP</p>
-              <a href="#">Shop Now</a>
+              <a href="#section-explore">Shop Now</a>
+              <!-- Shop Now → Explore Products -->
             </div>
           </div>
         </div>
@@ -646,7 +662,7 @@
   </section>
 
   <!-- ===================== SERVICE FEATURES ===================== -->
-  <section class="features-section">
+  <section class="features-section" id="section-features">
     <div class="feature-item">
       <div class="feature-icon">🚚</div>
       <h4>FREE AND FAST DELIVERY</h4>
@@ -665,7 +681,7 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
+  <footer class="footer" id="section-footer">
     <div class="footer-col">
       <h3 class="footer-logo">Exclusive</h3>
       <p class="footer-heading">Subscribe</p>
@@ -684,20 +700,20 @@
     <div class="footer-col">
       <p class="footer-heading">Account</p>
       <ul>
-        <li><a href="#">My Account</a></li>
-        <li><a href="#">Login / Register</a></li>
-        <li><a href="#">Cart</a></li>
+        <li><a href="login.php">My Account</a></li>
+        <li><a href="login.php">Login / Register</a></li>
+        <li><a href="cart.php">Cart</a></li>
         <li><a href="wishlist.php">Wishlist</a></li>
-        <li><a href="#">Shop</a></li>
+        <li><a href="#section-explore">Shop</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <p class="footer-heading">Quick Link</p>
       <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms Of Use</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#section-footer">Privacy Policy</a></li>
+        <li><a href="#section-footer">Terms Of Use</a></li>
+        <li><a href="#section-features">FAQ</a></li>
+        <li><a href="#section-features">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">

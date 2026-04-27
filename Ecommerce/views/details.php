@@ -10,7 +10,7 @@
 
   <!-- ===================== TOP BAR ===================== -->
   <div class="topbar">
-    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="#">Shop Now</a></p>
+    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="home.php">Shop Now</a></p>
     <select><option>English</option><option>Bahasa</option></select>
   </div>
 
@@ -182,10 +182,10 @@
       <p class="footer-heading">Account</p>
       <ul>
         <li><a href="#">My Account</a></li>
-        <li><a href="#">Login / Register</a></li>
+        <li><a href="login.php">Login / Register</a></li>
         <li><a href="cart.php">Cart</a></li>
         <li><a href="wishlist.php">Wishlist</a></li>
-        <li><a href="#">Shop</a></li>
+        <li><a href="home.php">Shop</a></li>
       </ul>
     </div>
     <div class="footer-col">

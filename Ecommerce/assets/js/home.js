@@ -56,11 +56,16 @@ startAutoSlide();
 
 function getEndTime() {
   const stored = localStorage.getItem('flashSaleEnd');
-  if (stored) return parseInt(stored);
-  const end = Date.now() + (3 * 86400000) + (23 * 3600000) + (19 * 60000) + (56 * 1000);
-  localStorage.setItem('flashSaleEnd', end.toString());
-  return end;
-}
+
+  if (stored) {
+    const end = parseInt(stored);
+    if (end > Date.now()) return end;
+  }
+  
+  const newEnd = Date.now() + (3 * 86400000) + (23 * 3600000) + (19 * 60000) + (56 * 1000);
+  localStorage.setItem('flashSaleEnd', newEnd.toString());
+  return newEnd;
+  }
 
 const flashEndTime = getEndTime();
 

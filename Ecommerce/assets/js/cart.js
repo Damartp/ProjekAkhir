@@ -1,5 +1,5 @@
 // ===========================
-// DATA PRODUK — SAMA PERSIS DENGAN home.js & wishlist.js
+// DATA PRODUK
 // ===========================
 
 const allProducts = [
@@ -23,8 +23,22 @@ const allProducts = [
 ];
 
 // ===========================
+// VALID COUPONS
+// ===========================
+
+const VALID_COUPONS = {
+  'RPL': { discount: 0.10, label: '10%' },
+};
+
+// ===========================
+// COUPON STATE — hanya di memori, TIDAK disimpan ke localStorage
+// Reset otomatis setiap refresh
+// ===========================
+
+let activeCoupon = null; // { code, discount, label } | null
+
+// ===========================
 // CART STATE — localStorage key: 'exclusive_cart'
-// Format: [{id, name, price, qty}]
 // ===========================
 
 function getCart() {
@@ -65,16 +79,14 @@ function renderCart() {
     return;
   }
 
-  // Show table
   if (cartTableWrap) cartTableWrap.querySelector('.cart-table').style.display = 'table';
   if (emptyCart)   emptyCart.style.display   = 'none';
   if (cartActions) cartActions.style.display = 'flex';
   if (cartBottom)  cartBottom.style.display  = 'flex';
 
   tbody.innerHTML = cart.map((item, index) => {
-    // Cari emoji dari allProducts berdasarkan id
     const productData = allProducts.find(p => p.id === item.id);
-    const emoji = productData ? productData.emoji : '📦';
+    const emoji    = productData ? productData.emoji : '📦';
     const subtotal = (item.price || 0) * (item.qty || 1);
 
     return `
@@ -96,7 +108,7 @@ function renderCart() {
         </td>
         <td class="subtotal-cell">$${subtotal}</td>
         <td>
-          <button class="delete-row-btn" onclick="deleteItem(${index})" title="Remove">✕</button>
+          <button class="delete-row-btn" onclick="deleteItem(${index})" title="Remove">x</button>
         </td>
       </tr>
     `;
@@ -111,11 +123,86 @@ function renderCart() {
 // ===========================
 
 function updateSummary(cart) {
-  const subtotal = cart.reduce((sum, i) => sum + (i.price || 0) * (i.qty || 1), 0);
-  const el = document.getElementById('subtotalVal');
-  const el2 = document.getElementById('totalVal');
-  if (el)  el.textContent  = `$${subtotal}`;
-  if (el2) el2.textContent = `$${subtotal}`;
+  const subtotal       = cart.reduce((sum, i) => sum + (i.price || 0) * (i.qty || 1), 0);
+  const discountAmount = activeCoupon ? Math.round(subtotal * activeCoupon.discount) : 0;
+  const total          = subtotal - discountAmount;
+
+  const elSubtotal = document.getElementById('subtotalVal');
+  if (elSubtotal) elSubtotal.textContent = '$' + subtotal;
+
+  const discountRow = document.getElementById('discountRow');
+  const elDiscount  = document.getElementById('discountVal');
+  if (discountRow) discountRow.style.display = activeCoupon ? 'flex' : 'none';
+  if (elDiscount)  elDiscount.textContent    = activeCoupon
+    ? '-$' + discountAmount + ' (' + activeCoupon.label + ' off - kode: ' + activeCoupon.code + ')'
+    : '';
+
+  const elTotal = document.getElementById('totalVal');
+  if (elTotal) elTotal.textContent = '$' + total;
+}
+
+// ===========================
+// APPLY COUPON
+// ===========================
+
+function applyCoupon(code) {
+  if (!code) {
+    showToast('Masukkan kode kupon terlebih dahulu!');
+    return;
+  }
+
+  const upperCode  = code.trim().toUpperCase();
+  const couponData = VALID_COUPONS[upperCode];
+
+  if (!couponData) {
+    showToast('Kode kupon tidak valid.');
+    return;
+  }
+
+  activeCoupon = { code: upperCode, discount: couponData.discount, label: couponData.label };
+
+  updateSummary(getCart());
+  updateCouponUI();
+
+  showToast('Kupon "' + upperCode + '" berhasil! Diskon ' + couponData.label + ' diterapkan.');
+}
+
+// ===========================
+// REMOVE COUPON
+// ===========================
+
+function removeCoupon() {
+  activeCoupon = null;
+
+  updateSummary(getCart());
+  updateCouponUI();
+
+  showToast('Kupon dihapus.');
+}
+
+// ===========================
+// UPDATE TAMPILAN INPUT & NOTE KUPON
+// ===========================
+
+function updateCouponUI() {
+  const inputEl    = document.getElementById('couponInput');
+  const couponNote = document.getElementById('couponNote');
+  const applyBtn   = document.getElementById('applyCouponBtn');
+  const removeBtn  = document.getElementById('removeCouponBtn');
+
+  if (inputEl) {
+    inputEl.value    = activeCoupon ? activeCoupon.code : '';
+    inputEl.disabled = !!activeCoupon;
+  }
+
+  if (couponNote) {
+    couponNote.textContent = activeCoupon
+      ? 'Kupon "' + activeCoupon.code + '" aktif - diskon ' + activeCoupon.label
+      : '';
+  }
+
+  if (applyBtn)  applyBtn.style.display  = activeCoupon ? 'none'         : 'inline-block';
+  if (removeBtn) removeBtn.style.display = activeCoupon ? 'inline-block' : 'none';
 }
 
 // ===========================
@@ -133,8 +220,7 @@ function changeQty(index, delta) {
 function setQty(index, value) {
   const cart = getCart();
   if (!cart[index]) return;
-  const qty = Math.max(1, parseInt(value) || 1);
-  cart[index].qty = qty;
+  cart[index].qty = Math.max(1, parseInt(value) || 1);
   saveCart(cart);
   renderCart();
 }
@@ -149,59 +235,51 @@ function deleteItem(index) {
   cart.splice(index, 1);
   saveCart(cart);
   renderCart();
-  showToast(`❌ "${name}" dihapus dari cart`);
+  showToast('"' + name + '" dihapus dari cart');
 }
 
 // ===========================
-// UPDATE CART BUTTON
+// DOM READY
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // activeCoupon selalu null saat halaman dimuat
   renderCart();
+  updateCouponUI();
 
-  // Update Cart button
   const updateBtn = document.getElementById('updateCartBtn');
   if (updateBtn) {
     updateBtn.addEventListener('click', () => {
-      // Baca semua qty input dan simpan ulang
-      const cart  = getCart();
+      const cart   = getCart();
       const inputs = document.querySelectorAll('.qty-input');
       inputs.forEach((input, i) => {
-        if (cart[i]) {
-          cart[i].qty = Math.max(1, parseInt(input.value) || 1);
-        }
+        if (cart[i]) cart[i].qty = Math.max(1, parseInt(input.value) || 1);
       });
       saveCart(cart);
       renderCart();
-      showToast('✅ Cart diperbarui!');
+      showToast('Cart diperbarui!');
     });
   }
 
-  // Apply Coupon button
   const couponBtn = document.getElementById('applyCouponBtn');
   if (couponBtn) {
     couponBtn.addEventListener('click', () => {
       const code = document.getElementById('couponInput')?.value.trim();
-      if (!code) {
-        showToast('⚠️ Masukkan kode kupon terlebih dahulu!');
-        return;
-      }
-      // Simulasi validasi kupon
-      if (code.toUpperCase() === 'EXCLUSIVE10') {
-        showToast('🎉 Kupon berhasil! Diskon 10% diterapkan.');
-      } else {
-        showToast('❌ Kode kupon tidak valid.');
-      }
+      applyCoupon(code);
     });
   }
 
-  // Search bar
+  const removeCouponBtn = document.getElementById('removeCouponBtn');
+  if (removeCouponBtn) {
+    removeCouponBtn.addEventListener('click', removeCoupon);
+  }
+
   const searchBtn   = document.querySelector('.search-btn');
   const searchInput = document.getElementById('searchInput');
   if (searchBtn && searchInput) {
     searchBtn.addEventListener('click', () => {
       const q = searchInput.value.trim();
-      if (q) alert(`Searching: "${q}"`);
+      if (q) alert('Searching: "' + q + '"');
     });
     searchInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') searchBtn.click();

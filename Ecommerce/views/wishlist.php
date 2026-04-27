@@ -10,7 +10,7 @@
 
   <!-- ===================== TOP BAR ===================== -->
   <div class="topbar">
-    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="#">Shop Now</a></p>
+    <p>Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="home.php">Shop Now</a></p>
     <select><option>English</option><option>Bahasa</option></select>
   </div>
 
@@ -38,13 +38,13 @@
         </svg>
         <span class="wish-count" id="wishCount">0</span>
       </button>
-      <button class="icon-btn cart-btn" aria-label="Cart" id="cartBtn">
+      <a href="cart.php" class="icon-btn cart-btn" aria-label="Cart" id="cartBtn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
         </svg>
         <span class="cart-count" id="cartCount">0</span>
-      </button>
+      </a>
       <button class="icon-btn" aria-label="Account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -113,10 +113,10 @@
       <p class="footer-heading">Account</p>
       <ul>
         <li><a href="#">My Account</a></li>
-        <li><a href="#">Login / Register</a></li>
-        <li><a href="#">Cart</a></li>
-        <li><a href="wishlist.html">Wishlist</a></li>
-        <li><a href="#">Shop</a></li>
+        <li><a href="login.php">Login / Register</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li><a href="wishlist.php">Wishlist</a></li>
+        <li><a href="home.php">Shop</a></li>
       </ul>
     </div>
     <div class="footer-col">
