@@ -45,7 +45,6 @@ function addToWishlist(id) {
 
 // ===========================
 // CART (localStorage key: 'exclusive_cart')
-// Format: [{id, name, price, qty}]
 // ===========================
 
 function getCart() {
@@ -66,7 +65,7 @@ function addToCart(product) {
   }
   saveCart(cart);
   updateCartCount();
-  showToast(`🛒 "${product.name}" ditambahkan ke cart!`);
+  showToast('"' + product.name + '" ditambahkan ke cart!');
 }
 
 function updateCartCount() {
@@ -77,6 +76,7 @@ function updateCartCount() {
 
 // ===========================
 // RENDER WISHLIST GRID
+// FIX: Tambah tombol hati (wishlist-toggle) di setiap card
 // ===========================
 
 function renderWishlist() {
@@ -106,9 +106,17 @@ function renderWishlist() {
       <div class="product-img-wrap">
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
-        <button class="delete-btn" onclick="handleDelete(${p.id})" title="Hapus">✕</button>
-        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">👁</a>
-        <button class="add-cart-btn" onclick="handleAddToCart(${p.id})">🛒 Add To Cart</button>
+
+        <!-- FIX: tombol hati — pakai class wishlist-btn agar CSS tidak bentrok -->
+        <button class="wishlist-btn wishlist-btn--active"
+                onclick="handleDelete(${p.id})"
+                title="Hapus dari Wishlist"
+                style="position:absolute;top:8px;right:8px;background:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;line-height:32px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.15);">
+          &#9829;
+        </button>
+
+        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">&#128065;</a>
+        <button class="add-cart-btn" onclick="handleAddToCart(${p.id})">Add To Cart</button>
       </div>
       <div class="product-info">
         <a href="details.php?id=${p.id}">
@@ -119,7 +127,7 @@ function renderWishlist() {
           ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ''}
         </div>
         <div class="stars">
-          ${'★'.repeat(p.stars)}${'☆'.repeat(5 - p.stars)}
+          ${'&#9733;'.repeat(p.stars)}${'&#9734;'.repeat(5 - p.stars)}
           <span class="review-count">(${p.reviews})</span>
         </div>
       </div>
@@ -129,6 +137,8 @@ function renderWishlist() {
 
 // ===========================
 // RENDER JUST FOR YOU
+// FIX: Ganti class tombol dari add-cart-btn ke wishlist-btn
+//      agar tidak bertabrakan dengan style cart
 // ===========================
 
 function renderJFY() {
@@ -143,8 +153,14 @@ function renderJFY() {
       <div class="product-img-wrap">
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
-        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">👁</a>
-        <button class="add-cart-btn" onclick="handleJFYWishlist(${p.id}, this)">♡ Add To Wishlist</button>
+        <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">&#128065;</a>
+
+        <!-- FIX: class wishlist-btn, bukan add-cart-btn -->
+        <button class="wishlist-btn"
+                onclick="handleJFYWishlist(${p.id}, this)"
+                style="position:absolute;bottom:8px;left:0;right:0;width:100%;background:#fff;border:none;border-top:1px solid #f0f0f0;padding:8px 0;cursor:pointer;font-size:14px;">
+          &#9825; Add To Wishlist
+        </button>
       </div>
       <div class="product-info">
         <a href="details.php?id=${p.id}">
@@ -155,7 +171,7 @@ function renderJFY() {
           ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ''}
         </div>
         <div class="stars">
-          ${'★'.repeat(p.stars)}${'☆'.repeat(5 - p.stars)}
+          ${'&#9733;'.repeat(p.stars)}${'&#9734;'.repeat(5 - p.stars)}
           <span class="review-count">(${p.reviews})</span>
         </div>
       </div>
@@ -170,14 +186,14 @@ function renderJFY() {
 function handleDelete(id) {
   const product = allProducts.find(p => p.id === id);
   removeFromWishlist(id);
-  const card = document.getElementById(`wcard-${id}`);
+  const card = document.getElementById('wcard-' + id);
   if (card) {
     card.style.transition = 'opacity 0.3s, transform 0.3s';
     card.style.opacity    = '0';
     card.style.transform  = 'scale(0.9)';
     setTimeout(() => { renderWishlist(); renderJFY(); }, 300);
   }
-  if (product) showToast(`❌ "${product.name}" dihapus dari wishlist`);
+  if (product) showToast('"' + product.name + '" dihapus dari wishlist');
 }
 
 function handleAddToCart(id) {
@@ -193,12 +209,12 @@ function handleJFYWishlist(id, btn) {
   if (!product) return;
   addToWishlist(id);
   if (btn) {
-    btn.textContent        = '♥ Added!';
-    btn.style.background   = '#db4444';
-    btn.style.color        = '#fff';
-    btn.style.opacity      = '1';
+    btn.innerHTML            = '&#9829; Added!';
+    btn.style.background     = '#db4444';
+    btn.style.color          = '#fff';
+    btn.style.opacity        = '1';
   }
-  showToast(`❤️ "${product.name}" ditambahkan ke wishlist!`);
+  showToast('"' + product.name + '" ditambahkan ke wishlist!');
   setTimeout(() => { renderWishlist(); renderJFY(); }, 800);
 }
 
@@ -211,13 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (moveAllBtn) {
     moveAllBtn.addEventListener('click', () => {
       const ids = getWishlist();
-      if (ids.length === 0) { showToast('⚠️ Wishlist kosong!'); return; }
+      if (ids.length === 0) { showToast('Wishlist kosong!'); return; }
       ids.forEach(id => {
         const p = allProducts.find(x => x.id === id);
         if (p) addToCart(p);
       });
       saveWishlist([]);
-      showToast(`🛒 Semua ${ids.length} item dipindah ke cart!`);
+      showToast('Semua ' + ids.length + ' item dipindah ke cart!');
       setTimeout(() => { renderWishlist(); renderJFY(); }, 400);
     });
   }
@@ -249,7 +265,7 @@ const searchInput = document.getElementById('searchInput');
 if (searchBtn && searchInput) {
   searchBtn.addEventListener('click', () => {
     const q = searchInput.value.trim();
-    if (q) alert(`Searching: "${q}"`);
+    if (q) alert('Searching: "' + q + '"');
   });
   searchInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') searchBtn.click();
