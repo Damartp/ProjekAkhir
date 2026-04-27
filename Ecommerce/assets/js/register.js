@@ -1,88 +1,99 @@
-// ===========================
-// FORM VALIDATION & SUBMIT
-// ===========================
-
-const createBtn = document.getElementById('createBtn');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
+const nameInput     = document.getElementById('name');
+const emailInput    = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 
-createBtn.addEventListener('click', function () {
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
+// ===========================
+// FORM SUBMIT
+// ===========================
+document.getElementById('createBtn').addEventListener('click', async () => {
+    const name     = nameInput.value.trim();
+    const email    = emailInput.value.trim();
+    const password = passwordInput.value;
 
-  // Reset styles
-  [nameInput, emailInput, passwordInput].forEach(input => {
-    input.style.borderBottomColor = '#ccc';
-  });
+    if (!name || !email || !password) {
+        alert('Semua field wajib diisi!');
+        return;
+    }
 
-  let valid = true;
+    const formData = new FormData();
+    formData.append('action', 'register');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
 
-  if (!name) {
-    nameInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
+    const res  = await fetch('/ProjekAkhir/Ecommerce/controllers/AuthController.php', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await res.json();
 
-  if (!email || !isValidEmail(email)) {
-    emailInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
-
-  if (!password || password.length < 6) {
-    passwordInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
-
-  if (valid) {
-    alert('Account created successfully! Welcome, ' + name + '!');
-    // In a real app, you would submit data to a server here
-  } else {
-    alert('Please fill in all fields correctly.');
-  }
+    if (data.success) {
+        alert('Registrasi berhasil! Silakan login.');
+        window.location.href = 'login.php';
+    } else {
+        alert(data.message);
+    }
 });
-
-// ===========================
-// HELPER FUNCTIONS
-// ===========================
-
-function isValidEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email) || /^[0-9+\-\s]+$/.test(email); // also allow phone number
-}
 
 // ===========================
 // INPUT FOCUS EFFECTS
 // ===========================
-
 [nameInput, emailInput, passwordInput].forEach(input => {
-  input.addEventListener('focus', function () {
-    this.style.borderBottomColor = '#db4444';
-  });
-  input.addEventListener('blur', function () {
-    if (!this.value.trim()) {
-      this.style.borderBottomColor = '#ccc';
-    }
-  });
+    input.addEventListener('focus', function () {
+        this.style.borderBottomColor = '#db4444';
+    });
+    input.addEventListener('blur', function () {
+        if (!this.value.trim()) {
+            this.style.borderBottomColor = '#ccc';
+        }
+    });
 });
 
 // ===========================
 // SEARCH BAR
 // ===========================
-
 const searchInput = document.querySelector('.search-box input');
-const searchBtn = document.querySelector('.search-btn');
+const searchBtn   = document.querySelector('.search-btn');
 
 searchBtn.addEventListener('click', function () {
-  const query = searchInput.value.trim();
-  if (query) {
-    alert('Searching for: ' + query);
-    // In a real app, navigate to search results page
-  }
+    const query = searchInput.value.trim();
+    if (query) {
+        alert('Searching for: ' + query);
+    }
 });
 
 searchInput.addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') {
-    searchBtn.click();
-  }
+    if (e.key === 'Enter') searchBtn.click();
+});
+
+
+// ===========================
+// SHOW/HIDE PASSWORD
+// ===========================
+const passwordField = document.getElementById('password');
+
+const toggleBtn = document.createElement('span');
+toggleBtn.innerHTML = '👁';
+toggleBtn.style.cssText = `
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+`;
+
+const passwordWrapper = passwordField.parentElement;
+passwordWrapper.style.position = 'relative';
+passwordWrapper.appendChild(toggleBtn);
+
+toggleBtn.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleBtn.innerHTML = '👁️‍🗨️';
+    } else {
+        passwordField.type = 'password';
+        toggleBtn.innerHTML = '👁';
+    }
 });

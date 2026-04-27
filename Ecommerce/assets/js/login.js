@@ -2,45 +2,33 @@
 // FORM VALIDATION & SUBMIT
 // ===========================
 
-const createBtn = document.getElementById('createBtn');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
+ document.getElementById('createBtn').addEventListener('click', async () => {
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-createBtn.addEventListener('click', function () {
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
+    if (!email || !password) {
+        alert('Email dan password wajib diisi!');
+        return;
+    }
 
-  // Reset styles
-  [nameInput, emailInput, passwordInput].forEach(input => {
-    input.style.borderBottomColor = '#ccc';
-  });
+    const formData = new FormData();
+    formData.append('action', 'login');
+    formData.append('email', email);
+    formData.append('password', password);
 
-  let valid = true;
+    const res  = await fetch('/ProjekAkhir/Ecommerce/controllers/AuthController.php', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await res.json();
 
-  if (!name) {
-    nameInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
-
-  if (!email || !isValidEmail(email)) {
-    emailInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
-
-  if (!password || password.length < 6) {
-    passwordInput.style.borderBottomColor = '#db4444';
-    valid = false;
-  }
-
-  if (valid) {
-    alert('Account created successfully! Welcome, ' + name + '!');
-    // In a real app, you would submit data to a server here
-  } else {
-    alert('Please fill in all fields correctly.');
-  }
-});
+    if (data.success) {
+        alert('Login berhasil! Selamat datang, ' + data.user.name);
+        window.location.href = 'home.php';
+    } else {
+        alert(data.message);
+    }
+    });
 
 // ===========================
 // HELPER FUNCTIONS
@@ -54,6 +42,10 @@ function isValidEmail(email) {
 // ===========================
 // INPUT FOCUS EFFECTS
 // ===========================
+
+const nameInput     = document.getElementById('name');
+const emailInput    = document.getElementById('email');
+const passwordInput = document.getElementById('password');
 
 [nameInput, emailInput, passwordInput].forEach(input => {
   input.addEventListener('focus', function () {
@@ -85,4 +77,35 @@ searchInput.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     searchBtn.click();
   }
+});
+
+// ===========================
+// SHOW/HIDE PASSWORD
+// ===========================
+const passwordField = document.getElementById('password');
+
+const toggleBtn = document.createElement('span');
+toggleBtn.innerHTML = '👁';
+toggleBtn.style.cssText = `
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+`;
+
+const passwordWrapper = passwordField.parentElement;
+passwordWrapper.style.position = 'relative';
+passwordWrapper.appendChild(toggleBtn);
+
+toggleBtn.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleBtn.innerHTML = '👁️‍🗨️';
+    } else {
+        passwordField.type = 'password';
+        toggleBtn.innerHTML = '👁';
+    }
 });

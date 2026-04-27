@@ -94,7 +94,7 @@
           <input type="text" id="name" placeholder="Name" />
         </div>
         <div class="form-group">
-          <input type="email" id="email" placeholder="Email or Phone Number" />
+          <input type="email" id="email" placeholder="Email" />
         </div>
         <div class="form-group">
           <input type="password" id="password" placeholder="Password" />
