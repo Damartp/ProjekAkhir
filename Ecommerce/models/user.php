@@ -34,4 +34,42 @@ class User {
         }
         return ['success' => false, 'message' => 'Email atau password salah'];
     }
+
+   
+    public function getById($id) {
+    $stmt = $this->conn->prepare(
+        "SELECT id, name, email FROM {$this->table} WHERE id = ?"
+    );
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateName($id, $name) {
+    $stmt = $this->conn->prepare(
+        "UPDATE {$this->table} SET name = ? WHERE id = ?"
+    );
+    return $stmt->execute([$name, $id]);
+    }
+
+
+    public function updatePassword($id, $currentPassword, $newPassword) {
+    $stmt = $this->conn->prepare(
+        "SELECT password FROM {$this->table} WHERE id = ?"
+    );
+    $stmt->execute([$id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user || !password_verify($currentPassword, $user['password'])) {
+        return ['success' => false, 'message' => 'Password lama salah'];
+    }
+
+    $hash = password_hash($newPassword, PASSWORD_DEFAULT);
+    $stmt = $this->conn->prepare(
+        "UPDATE {$this->table} SET password = ? WHERE id = ?"
+    );
+    $stmt->execute([$hash, $id]);
+    return ['success' => true, 'message' => 'Password berhasil diubah'];
 }
+}
+

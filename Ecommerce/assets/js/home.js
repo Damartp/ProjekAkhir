@@ -293,3 +293,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const countEl = document.getElementById('cartCount');
   if (countEl) countEl.textContent = total;
 });
+

@@ -1,0 +1,115 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #fff; color: #333; }
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  border-bottom: 1px solid #eee;
+}
+.logo { font-size: 24px; font-weight: 700; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { text-decoration: none; color: #333; }
+.nav-links a.active { border-bottom: 2px solid #db4444; }
+.nav-icons { display: flex; gap: 16px; font-size: 20px; }
+.nav-icons a { text-decoration: none; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding: 16px 40px;
+  color: #888;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb .active { color: #333; }
+.breadcrumb .welcome { margin-left: auto; color: #333; }
+
+/* MAIN */
+.account-main {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  min-height: 70vh;
+  align-items: flex-start;
+}
+
+/* KIRI */
+.account-left {
+  width: 280px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.account-avatar { margin-bottom: 8px; }
+.account-info { width: 100%; }
+.info-label {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+.info-value { font-size: 15px; font-weight: 500; color: #333; margin-top: 2px; }
+.btn-logout {
+  margin-top: 16px;
+  background: #db4444;
+  color: #fff;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+.btn-logout:hover { background: #c03333; }
+
+/* KANAN */
+.account-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.form-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.form-card h2 { font-size: 18px; margin-bottom: 16px; color: #db4444; }
+.form-group { margin-bottom: 12px; }
+.form-group input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+.form-group input:focus { border-bottom-color: #db4444; }
+.btn-save {
+  background: #db4444;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.btn-save:hover { background: #c03333; }
+.msg { margin-top: 10px; font-size: 13px; }
+.msg.success { color: green; }
+.msg.error { color: red; }

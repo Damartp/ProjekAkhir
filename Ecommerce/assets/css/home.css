@@ -1119,3 +1119,11 @@ img { max-width: 100%; }
   .features-section { padding: 40px 16px; }
   .arrival-bottom { grid-template-columns: 1fr; }
 }
+.icon-btn[aria-label="Account"] {
+  color: var(--text);
+  transition: color 0.2s;
+}
+
+.icon-btn[aria-label="Account"]:hover {
+  color: #db4444;
+}
