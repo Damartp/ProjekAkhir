@@ -3,25 +3,51 @@
 // ID harus sama persis dengan data-id di HTML dan wishlist.js
 // ===========================
 
-const PRODUCTS = {
-  1:  { id: 1,  name: 'HAVIT HV-G92 Gamepad',    price: 120  },
-  2:  { id: 2,  name: 'AK-900 Wired Keyboard',    price: 960  },
-  3:  { id: 3,  name: 'IPS LCD Gaming Monitor',   price: 370  },
-  4:  { id: 4,  name: 'S-Series Comfort Chair',   price: 375  },
-  5:  { id: 5,  name: 'S-Series Gaming Laptop',   price: 699  },
-  6:  { id: 6,  name: 'The north coat',           price: 23   },
-  7:  { id: 7,  name: 'Gucci duffle bag',         price: 960  },
-  8:  { id: 8,  name: 'RGB liquid CPU Cooler',    price: 160  },
-  9:  { id: 9,  name: 'Small BookSelf',           price: 360  },
-  10: { id: 10, name: 'Breed Dry Dog Food',       price: 100  },
-  11: { id: 11, name: 'CANON EOS DSLR Camera',    price: 360  },
-  12: { id: 12, name: 'ASUS FHD Gaming Laptop',   price: 700  },
-  13: { id: 13, name: 'Curology Product Set',     price: 500  },
-  14: { id: 14, name: 'Kids Electric Car',        price: 960  },
-  15: { id: 15, name: 'Jr. Zoom Soccer Cleats',   price: 1160 },
-  16: { id: 16, name: 'GP11 Shooter USB Gamepad', price: 660  },
-  17: { id: 17, name: 'Quilted Satin Jacket',     price: 660  },
-};
+const CONTROLLER = '/ProjekAkhir/Ecommerce/controllers/ProductController.php';
+let PRODUCTS = {};
+
+async function loadProducts() {
+    const res  = await fetch(`${CONTROLLER}?action=getAll`);
+    const data = await res.json();
+    if (!data.success) return;
+    data.data.forEach(p => {
+        PRODUCTS[p.id] = { id: p.id, name: p.name, price: parseFloat(p.price) };
+    });
+    renderSection('flash',    data.data.filter(p => p.section === 'flash'));
+    renderSection('bestsell', data.data.filter(p => p.section === 'bestsell'));
+    renderSection('explore',  data.data.filter(p => p.section === 'explore'));
+}
+
+function renderSection(section, products) {
+    const gridId = { flash: 'flashSlider', bestsell: 'bestsellGrid', explore: 'exploreGrid' }[section];
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    grid.innerHTML = products.map(p => `
+        <div class="product-card">
+            <div class="product-img-wrap">
+                ${p.badge ? `<span class="badge badge-${p.badge_color}">${p.badge}</span>` : ''}
+                <div class="product-img">${p.emoji}</div>
+                <div class="product-actions">
+                    <button class="wish-btn" data-id="${p.id}">♥</button>
+                    <a class="view-btn" href="details.php?id=${p.id}">👁</a>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart(${p.id})">Add To Cart</button>
+            </div>
+            <div class="product-info">
+                <a href="details.php?id=${p.id}"><p class="product-name">${p.name}</p></a>
+                <div class="product-price">
+                    <span class="price-new">$${p.price}</span>
+                    ${p.old_price ? `<span class="price-old">$${p.old_price}</span>` : ''}
+                </div>
+                <div class="stars">
+                    ${'★'.repeat(p.stars)}${'☆'.repeat(5 - p.stars)}
+                    <span class="review-count">(${p.reviews})</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    syncWishlistButtons();
+}
 
 // ===========================
 // HERO BANNER SLIDER
@@ -285,12 +311,9 @@ document.querySelectorAll('.arrival-card').forEach(card => {
 // INIT
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
-  syncWishlistButtons();
-
-  // Sync cart count
-  const total = getCart().reduce((sum, i) => sum + (i.qty || 1), 0);
-  const countEl = document.getElementById('cartCount');
-  if (countEl) countEl.textContent = total;
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadProducts();
+    const total   = getCart().reduce((sum, i) => sum + (i.qty || 1), 0);
+    const countEl = document.getElementById('cartCount');
+    if (countEl) countEl.textContent = total;
 });
-

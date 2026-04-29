@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/database.sql';
+require_once '../config/database.php';
 require_once '../models/User.php';
 
 $db = (new Database())->connect();

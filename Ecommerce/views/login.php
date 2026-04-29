@@ -74,14 +74,6 @@
         <rect x="178" y="205" width="14" height="12" rx="3" fill="#9050b0"/>
         <line x1="178" y1="205" x2="178" y2="216" stroke="#7030a0" stroke-width="1.5"/>
         <line x1="192" y1="205" x2="192" y2="216" stroke="#7030a0" stroke-width="1.5"/>
-
-        <!-- Heart badge -->
-        <circle cx="62" cy="105" r="14" fill="#ff4d4d"/>
-        <text x="55" y="111" font-size="13" fill="white">♥</text>
-
-        <!-- Eye badge -->
-        <circle cx="62" cy="138" r="14" fill="#f5f5f5"/>
-        <text x="55" y="144" font-size="13" fill="#555">👁</text>
       </svg>
     </div>
 

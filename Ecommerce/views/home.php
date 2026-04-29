@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -321,7 +324,7 @@
       <!-- View All → scroll ke Explore Products -->
     </div>
 
-    <div class="products-grid">
+    <div class="products-grid" id="bestsellGrid">
 
       <!-- id=6 → The north coat -->
       <div class="product-card">
@@ -443,7 +446,7 @@
       </div>
     </div>
 
-    <div class="products-grid">
+    <div class="products-grid" id="exploreGrid">
 
       <!-- id=10 → Breed Dry Dog Food -->
       <div class="product-card">

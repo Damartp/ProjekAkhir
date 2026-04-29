@@ -4,9 +4,9 @@ class Database {
     private $dbname = 'shop';
     private $username = 'root';
     private $password = '';
+    private $conn = null;
 
     public function connect() {
-        $this->conn = null;
         try {
             $this->conn = new PDO(
                 "mysql:host={$this->host};dbname={$this->dbname}",
