@@ -43,10 +43,11 @@ session_start();
           </svg>
         </button>
       </div>
-      <a href="wishlist.php" class="icon-btn" aria-label="Wishlist">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      <a href="wishlist.php" class="icon-btn" aria-label="Wishlist" style="position:relative;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
+        <span class="cart-count" id="wishCount" style="display:none;">0</span>
       </a>
       <a class="icon-btn cart-btn" aria-label="Cart" id="cartBtn" href="cart.php">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -762,6 +763,7 @@ session_start();
   <!-- Cart Toast -->
   <div class="cart-toast" id="cartToast"></div>
 
+  <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/home.js"></script>
 </body>
 </html>

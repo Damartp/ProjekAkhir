@@ -1,26 +1,9 @@
 // ===========================
-// DATA PRODUK — SAMA PERSIS DENGAN home.js & details.js & cart.js
+// DATA PRODUK
+// ✅ FIX: DIHAPUS seluruh array allProducts hardcode (17 item)
+//         allProducts sudah tersedia global dari produk.js via initProducts()
+//         Pastikan produk.js di-load SEBELUM wishlist.js di HTML
 // ===========================
-
-const allProducts = [
-  { id: 1,  name: 'HAVIT HV-G92 Gamepad',    emoji: '🎮', price: 120,  oldPrice: 160,  badge: '-40%', badgeType: 'red',   stars: 5, reviews: 88  },
-  { id: 2,  name: 'AK-900 Wired Keyboard',    emoji: '⌨️', price: 960,  oldPrice: 1160, badge: '-35%', badgeType: 'red',   stars: 5, reviews: 75  },
-  { id: 3,  name: 'IPS LCD Gaming Monitor',   emoji: '🖥️', price: 370,  oldPrice: 400,  badge: '-30%', badgeType: 'red',   stars: 5, reviews: 99  },
-  { id: 4,  name: 'S-Series Comfort Chair',   emoji: '🪑', price: 375,  oldPrice: 400,  badge: '-25%', badgeType: 'red',   stars: 4, reviews: 99  },
-  { id: 5,  name: 'S-Series Gaming Laptop',   emoji: '💻', price: 699,  oldPrice: 900,  badge: '-20%', badgeType: 'red',   stars: 5, reviews: 77  },
-  { id: 6,  name: 'The north coat',           emoji: '🧥', price: 23,   oldPrice: 260,  badge: null,   badgeType: '',      stars: 5, reviews: 65  },
-  { id: 7,  name: 'Gucci duffle bag',         emoji: '👜', price: 960,  oldPrice: 1160, badge: null,   badgeType: '',      stars: 5, reviews: 65  },
-  { id: 8,  name: 'RGB liquid CPU Cooler',    emoji: '🖥️', price: 160,  oldPrice: 170,  badge: null,   badgeType: '',      stars: 5, reviews: 65  },
-  { id: 9,  name: 'Small BookSelf',           emoji: '📚', price: 360,  oldPrice: null, badge: null,   badgeType: '',      stars: 5, reviews: 65  },
-  { id: 10, name: 'Breed Dry Dog Food',       emoji: '🐶', price: 100,  oldPrice: null, badge: null,   badgeType: '',      stars: 3, reviews: 35  },
-  { id: 11, name: 'CANON EOS DSLR Camera',    emoji: '📷', price: 360,  oldPrice: null, badge: null,   badgeType: '',      stars: 5, reviews: 95  },
-  { id: 12, name: 'ASUS FHD Gaming Laptop',   emoji: '💻', price: 700,  oldPrice: null, badge: null,   badgeType: '',      stars: 5, reviews: 325 },
-  { id: 13, name: 'Curology Product Set',     emoji: '🧴', price: 500,  oldPrice: null, badge: null,   badgeType: '',      stars: 5, reviews: 145 },
-  { id: 14, name: 'Kids Electric Car',        emoji: '🚗', price: 960,  oldPrice: 1160, badge: 'NEW',  badgeType: 'green', stars: 5, reviews: 65  },
-  { id: 15, name: 'Jr. Zoom Soccer Cleats',   emoji: '👟', price: 1160, oldPrice: 1600, badge: 'NEW',  badgeType: 'green', stars: 5, reviews: 35  },
-  { id: 16, name: 'GP11 Shooter USB Gamepad', emoji: '🎮', price: 660,  oldPrice: 1160, badge: 'NEW',  badgeType: 'green', stars: 5, reviews: 55  },
-  { id: 17, name: 'Quilted Satin Jacket',     emoji: '🧥', price: 660,  oldPrice: null, badge: null,   badgeType: '',      stars: 5, reviews: 55  },
-];
 
 // ===========================
 // WISHLIST (localStorage key: 'exclusive_wishlist')
@@ -76,7 +59,6 @@ function updateCartCount() {
 
 // ===========================
 // RENDER WISHLIST GRID
-// FIX: Tambah tombol hati (wishlist-toggle) di setiap card
 // ===========================
 
 function renderWishlist() {
@@ -88,6 +70,7 @@ function renderWishlist() {
 
   if (!grid) return;
 
+  // ✅ FIX: allProducts dari produk.js (sudah diisi initProducts())
   const items = allProducts.filter(p => wishlistIds.includes(p.id));
 
   if (countEl)     countEl.textContent     = items.length;
@@ -106,15 +89,12 @@ function renderWishlist() {
       <div class="product-img-wrap">
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
-
-        <!-- FIX: tombol hati — pakai class wishlist-btn agar CSS tidak bentrok -->
         <button class="wishlist-btn wishlist-btn--active"
                 onclick="handleDelete(${p.id})"
                 title="Hapus dari Wishlist"
                 style="position:absolute;top:8px;right:8px;background:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;line-height:32px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.15);">
           &#9829;
         </button>
-
         <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">&#128065;</a>
         <button class="add-cart-btn" onclick="handleAddToCart(${p.id})">Add To Cart</button>
       </div>
@@ -137,8 +117,6 @@ function renderWishlist() {
 
 // ===========================
 // RENDER JUST FOR YOU
-// FIX: Ganti class tombol dari add-cart-btn ke wishlist-btn
-//      agar tidak bertabrakan dengan style cart
 // ===========================
 
 function renderJFY() {
@@ -146,6 +124,7 @@ function renderJFY() {
   const grid = document.getElementById('jfyGrid');
   if (!grid) return;
 
+  // ✅ FIX: allProducts dari produk.js
   const suggestions = allProducts.filter(p => !wishlistIds.includes(p.id)).slice(0, 4);
 
   grid.innerHTML = suggestions.map(p => `
@@ -154,8 +133,6 @@ function renderJFY() {
         ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
         <div class="product-img">${p.emoji}</div>
         <a class="view-btn" href="details.php?id=${p.id}" title="Lihat Detail">&#128065;</a>
-
-        <!-- FIX: class wishlist-btn, bukan add-cart-btn -->
         <button class="wishlist-btn"
                 onclick="handleJFYWishlist(${p.id}, this)"
                 style="position:absolute;bottom:8px;left:0;right:0;width:100%;background:#fff;border:none;border-top:1px solid #f0f0f0;padding:8px 0;cursor:pointer;font-size:14px;">
@@ -209,10 +186,10 @@ function handleJFYWishlist(id, btn) {
   if (!product) return;
   addToWishlist(id);
   if (btn) {
-    btn.innerHTML            = '&#9829; Added!';
-    btn.style.background     = '#db4444';
-    btn.style.color          = '#fff';
-    btn.style.opacity        = '1';
+    btn.innerHTML        = '&#9829; Added!';
+    btn.style.background = '#db4444';
+    btn.style.color      = '#fff';
+    btn.style.opacity    = '1';
   }
   showToast('"' + product.name + '" ditambahkan ke wishlist!');
   setTimeout(() => { renderWishlist(); renderJFY(); }, 800);
@@ -222,7 +199,9 @@ function handleJFYWishlist(id, btn) {
 // MOVE ALL TO BAG
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await initProducts();
+
   const moveAllBtn = document.getElementById('moveAllBtn');
   if (moveAllBtn) {
     moveAllBtn.addEventListener('click', () => {

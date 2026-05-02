@@ -45,12 +45,12 @@
         </svg>
         <span class="cart-count" id="cartCount">0</span>
       </a>
-      <button class="icon-btn" aria-label="Account">
+      <a href="account.php" class="icon-btn" aria-label="Account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
-      </button>
+      </a>
     </div>
   </nav>
 
@@ -112,7 +112,7 @@
     <div class="footer-col">
       <p class="footer-heading">Account</p>
       <ul>
-        <li><a href="#">My Account</a></li>
+        <li><a href="account.php">My Account</a></li>
         <li><a href="login.php">Login / Register</a></li>
         <li><a href="cart.php">Cart</a></li>
         <li><a href="wishlist.php">Wishlist</a></li>
@@ -159,6 +159,7 @@
   <!-- Toast Notification -->
   <div class="toast" id="toast"></div>
 
+  <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/wishlist.js"></script>
 </body>
 </html>

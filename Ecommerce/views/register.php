@@ -166,7 +166,7 @@
       </div>
     </div>
   </footer>
-
+  
   <script src="/ProjekAkhir/Ecommerce/assets/js/register.js"></script>
 </body>
 </html>

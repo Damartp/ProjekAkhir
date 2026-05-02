@@ -1,53 +1,11 @@
 // ===========================
 // SHARED PRODUCT DATA
-// ID harus sama persis dengan data-id di HTML dan wishlist.js
+// produk.js di-load duluan → PRODUCTS & allProducts sudah global
 // ===========================
 
 const CONTROLLER = '/ProjekAkhir/Ecommerce/controllers/ProductController.php';
-let PRODUCTS = {};
 
-async function loadProducts() {
-    const res  = await fetch(`${CONTROLLER}?action=getAll`);
-    const data = await res.json();
-    if (!data.success) return;
-    data.data.forEach(p => {
-        PRODUCTS[p.id] = { id: p.id, name: p.name, price: parseFloat(p.price) };
-    });
-    renderSection('flash',    data.data.filter(p => p.section === 'flash'));
-    renderSection('bestsell', data.data.filter(p => p.section === 'bestsell'));
-    renderSection('explore',  data.data.filter(p => p.section === 'explore'));
-}
 
-function renderSection(section, products) {
-    const gridId = { flash: 'flashSlider', bestsell: 'bestsellGrid', explore: 'exploreGrid' }[section];
-    const grid = document.getElementById(gridId);
-    if (!grid) return;
-    grid.innerHTML = products.map(p => `
-        <div class="product-card">
-            <div class="product-img-wrap">
-                ${p.badge ? `<span class="badge badge-${p.badge_color}">${p.badge}</span>` : ''}
-                <div class="product-img">${p.emoji}</div>
-                <div class="product-actions">
-                    <button class="wish-btn" data-id="${p.id}">♥</button>
-                    <a class="view-btn" href="details.php?id=${p.id}">👁</a>
-                </div>
-                <button class="add-cart-btn" onclick="addToCart(${p.id})">Add To Cart</button>
-            </div>
-            <div class="product-info">
-                <a href="details.php?id=${p.id}"><p class="product-name">${p.name}</p></a>
-                <div class="product-price">
-                    <span class="price-new">$${p.price}</span>
-                    ${p.old_price ? `<span class="price-old">$${p.old_price}</span>` : ''}
-                </div>
-                <div class="stars">
-                    ${'★'.repeat(p.stars)}${'☆'.repeat(5 - p.stars)}
-                    <span class="review-count">(${p.reviews})</span>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    syncWishlistButtons();
-}
 
 // ===========================
 // HERO BANNER SLIDER
@@ -59,6 +17,7 @@ const dots = document.querySelectorAll('.dot');
 let autoSlideInterval;
 
 function goToSlide(index) {
+  if (!slides.length) return;
   slides[currentSlide].classList.remove('active');
   dots[currentSlide].classList.remove('active');
   currentSlide = (index + slides.length) % slides.length;
@@ -74,7 +33,7 @@ dots.forEach((dot, i) => {
   dot.addEventListener('click', () => { goToSlide(i); resetAutoSlide(); });
 });
 
-startAutoSlide();
+if (slides.length) startAutoSlide();
 
 // ===========================
 // COUNTDOWN TIMER (Flash Sales)
@@ -82,26 +41,28 @@ startAutoSlide();
 
 function getEndTime() {
   const stored = localStorage.getItem('flashSaleEnd');
-
   if (stored) {
     const end = parseInt(stored);
     if (end > Date.now()) return end;
   }
-  
   const newEnd = Date.now() + (3 * 86400000) + (23 * 3600000) + (19 * 60000) + (56 * 1000);
   localStorage.setItem('flashSaleEnd', newEnd.toString());
   return newEnd;
-  }
+}
 
 const flashEndTime = getEndTime();
 
 function updateCountdown() {
   const diff = Math.max(0, flashEndTime - Date.now());
   const pad = n => String(n).padStart(2, '0');
-  document.getElementById('days').textContent    = pad(Math.floor(diff / 86400000));
-  document.getElementById('hours').textContent   = pad(Math.floor((diff % 86400000) / 3600000));
-  document.getElementById('minutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
-  document.getElementById('seconds').textContent = pad(Math.floor((diff % 60000) / 1000));
+  const elD = document.getElementById('days');
+  const elH = document.getElementById('hours');
+  const elM = document.getElementById('minutes');
+  const elS = document.getElementById('seconds');
+  if (elD) elD.textContent = pad(Math.floor(diff / 86400000));
+  if (elH) elH.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+  if (elM) elM.textContent = pad(Math.floor((diff % 3600000) / 60000));
+  if (elS) elS.textContent = pad(Math.floor((diff % 60000) / 1000));
 }
 
 setInterval(updateCountdown, 1000);
@@ -150,11 +111,18 @@ function saveCart(cart) {
 }
 
 // Dipanggil dari onclick di HTML: addToCart(productId)
+// PRODUCTS sudah diisi oleh initProducts() dari produk.js
 function addToCart(productId) {
+  if (Object.keys(PRODUCTS).length === 0) {
+    showToast('Tunggu sebentar, memuat produk...');
+    setTimeout(() => addToCart(productId), 500);
+    return;
+  }
+
   const product = PRODUCTS[productId];
   if (!product) return;
 
-  const cart = getCart();
+  const cart     = getCart();
   const existing = cart.find(i => i.id === productId);
   if (existing) {
     existing.qty = (existing.qty || 1) + 1;
@@ -163,8 +131,7 @@ function addToCart(productId) {
   }
   saveCart(cart);
 
-  // Update badge
-  const total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+  const total   = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
   const countEl = document.getElementById('cartCount');
   if (countEl) countEl.textContent = total;
 
@@ -198,7 +165,7 @@ if (searchBtn) {
 }
 if (searchInput) {
   searchInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') searchBtn.click();
+    if (e.key === 'Enter') searchBtn?.click();
   });
 }
 
@@ -255,9 +222,8 @@ function subscribeEmail() {
 }
 
 // ===========================
-// WISHLIST — simpan id ke localStorage
+// WISHLIST
 // ===========================
-
 function getWishlist() {
   return JSON.parse(localStorage.getItem('exclusive_wishlist') || '[]');
 }
@@ -269,7 +235,7 @@ function saveWishlist(list) {
 function syncWishlistButtons() {
   const list = getWishlist();
   document.querySelectorAll('.wish-btn').forEach(btn => {
-    const id = parseInt(btn.dataset.id);
+    const id     = parseInt(btn.dataset.id);
     const active = list.includes(id);
     btn.classList.toggle('active', active);
     btn.style.background = active ? '#db4444' : '';
@@ -277,43 +243,53 @@ function syncWishlistButtons() {
   });
 }
 
-document.querySelectorAll('.wish-btn').forEach(btn => {
-  btn.addEventListener('click', function () {
-    const id   = parseInt(this.dataset.id);
-    const list = getWishlist();
-    const idx  = list.indexOf(id);
-    const adding = idx === -1;
-
-    if (adding) {
-      list.push(id);
-    } else {
-      list.splice(idx, 1);
-    }
-
-    saveWishlist(list);
-    this.classList.toggle('active', adding);
-    this.style.background = adding ? '#db4444' : '';
-    this.style.color      = adding ? '#fff'    : '';
-    showToast(adding ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
-  });
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.wish-btn');
+  if (!btn) return;
+  const id     = parseInt(btn.dataset.id);
+  const list   = getWishlist();
+  const idx    = list.indexOf(id);
+  const adding = idx === -1;
+  if (adding) list.push(id); else list.splice(idx, 1);
+  saveWishlist(list);
+  btn.classList.toggle('active', adding);
+  btn.style.background = adding ? '#db4444' : '';
+  btn.style.color      = adding ? '#fff'    : '';
+  updateWishlistBadge(); // ← update badge navbar
+  showToast(adding ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
 });
 
 // ===========================
 // NEW ARRIVAL CARD HOVER
 // ===========================
-
 document.querySelectorAll('.arrival-card').forEach(card => {
   card.addEventListener('mouseenter', () => { card.style.filter = 'brightness(1.1)'; });
   card.addEventListener('mouseleave', () => { card.style.filter = ''; });
 });
 
 // ===========================
+// UPDATE BADGE NAVBAR
+// ===========================
+function updateWishlistBadge() {
+  const count = getWishlist().length;
+  const el    = document.getElementById('wishCount');
+  if (!el) return;
+  el.textContent    = count;
+  el.style.display  = count > 0 ? 'flex' : 'none';
+}
+
+function updateCartBadge() {
+  const total = getCart().reduce((sum, i) => sum + (i.qty || 1), 0);
+  const el    = document.getElementById('cartCount');
+  if (el) el.textContent = total;
+}
+
+// ===========================
 // INIT
 // ===========================
-
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadProducts();
-    const total   = getCart().reduce((sum, i) => sum + (i.qty || 1), 0);
-    const countEl = document.getElementById('cartCount');
-    if (countEl) countEl.textContent = total;
+  await initProducts();
+  updateCartBadge();
+  updateWishlistBadge();
+  syncWishlistButtons();
 });

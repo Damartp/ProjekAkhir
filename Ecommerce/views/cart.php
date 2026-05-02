@@ -32,10 +32,11 @@
           </svg>
         </button>
       </div>
-      <a href="wishlist.php" class="icon-btn" aria-label="Wishlist">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      <a href="wishlist.php" class="icon-btn" aria-label="Wishlist" style="position:relative;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
+        <span class="cart-count" id="wishCount" style="display:none;">0</span>
       </a>
       <a href="cart.php" class="icon-btn cart-nav-btn active" aria-label="Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -44,12 +45,12 @@
         </svg>
         <span class="cart-count" id="cartCount">0</span>
       </a>
-      <button class="icon-btn" aria-label="Account">
+      <a href="account.php" class="icon-btn" aria-label="Account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
-      </button>
+      </a>
     </div>
   </nav>
 
@@ -102,6 +103,9 @@
       <div class="coupon-wrap">
         <input type="text" class="coupon-input" id="couponInput" placeholder="Coupon Code" />
         <button class="btn-red" id="applyCouponBtn">Apply Coupon</button>
+        <button class="btn-outline" id="removeCouponBtn" style="display:none;">Remove Coupon</button>
+        <!-- ✅ FIX: tambah couponNote yang dipakai cart.js -->
+        <p id="couponNote" style="font-size:13px;color:green;margin-top:6px;"></p>
       </div>
 
       <!-- Cart Total -->
@@ -112,6 +116,12 @@
           <span id="subtotalVal">$0</span>
         </div>
         <hr />
+        <!-- ✅ FIX: tambah discountRow & discountVal yang dipakai cart.js -->
+        <div class="total-row" id="discountRow" style="display:none;">
+          <span>Discount:</span>
+          <span id="discountVal" style="color:green;"></span>
+        </div>
+        <hr id="discountHr" style="display:none;" />
         <div class="total-row">
           <span>Shipping:</span>
           <span class="free-shipping">Free</span>
@@ -121,7 +131,7 @@
           <span>Total:</span>
           <span id="totalVal">$0</span>
         </div>
-        <a href="checkout.php" class="btn-red btn-full" id="checkoutBtn">Procees to checkout</a>
+        <a href="checkout.php" class="btn-red btn-full" id="checkoutBtn">Proceed to checkout</a>
       </div>
 
     </div>
@@ -195,6 +205,7 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
+  <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/cart.js"></script>
 </body>
 </html>

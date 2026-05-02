@@ -2,25 +2,8 @@
 // DATA PRODUK
 // ===========================
 
-const allProducts = [
-  { id: 1,  name: 'HAVIT HV-G92 Gamepad',    emoji: '🎮', price: 120  },
-  { id: 2,  name: 'AK-900 Wired Keyboard',    emoji: '⌨️', price: 960  },
-  { id: 3,  name: 'IPS LCD Gaming Monitor',   emoji: '🖥️', price: 370  },
-  { id: 4,  name: 'S-Series Comfort Chair',   emoji: '🪑', price: 375  },
-  { id: 5,  name: 'S-Series Gaming Laptop',   emoji: '💻', price: 699  },
-  { id: 6,  name: 'The north coat',           emoji: '🧥', price: 23   },
-  { id: 7,  name: 'Gucci duffle bag',         emoji: '👜', price: 960  },
-  { id: 8,  name: 'RGB liquid CPU Cooler',    emoji: '🖥️', price: 160  },
-  { id: 9,  name: 'Small BookSelf',           emoji: '📚', price: 360  },
-  { id: 10, name: 'Breed Dry Dog Food',       emoji: '🐶', price: 100  },
-  { id: 11, name: 'CANON EOS DSLR Camera',    emoji: '📷', price: 360  },
-  { id: 12, name: 'ASUS FHD Gaming Laptop',   emoji: '💻', price: 700  },
-  { id: 13, name: 'Curology Product Set',     emoji: '🧴', price: 500  },
-  { id: 14, name: 'Kids Electric Car',        emoji: '🚗', price: 960  },
-  { id: 15, name: 'Jr. Zoom Soccer Cleats',   emoji: '👟', price: 1160 },
-  { id: 16, name: 'GP11 Shooter USB Gamepad', emoji: '🎮', price: 660  },
-  { id: 17, name: 'Quilted Satin Jacket',     emoji: '🧥', price: 660  },
-];
+// ✅ FIX: DIHAPUS 'let allProducts = []' → sudah ada di produk.js (global)
+// ✅ FIX: DIHAPUS 'async function loadProductData()' → redundan, pakai initProducts() dari produk.js
 
 // ===========================
 // VALID COUPONS
@@ -46,7 +29,7 @@ function getCart() {
 }
 
 function saveCart(cart) {
-  localStorage.setItem('exclusive_cart', JSON.stringify(cart));
+  localStorage.setItem('exclusive_cart',  JSON.stringify(cart));
 }
 
 function updateCartBadge() {
@@ -85,6 +68,7 @@ function renderCart() {
   if (cartBottom)  cartBottom.style.display  = 'flex';
 
   tbody.innerHTML = cart.map((item, index) => {
+    // ✅ FIX: allProducts terisi dari initProducts() di produk.js
     const productData = allProducts.find(p => p.id === item.id);
     const emoji    = productData ? productData.emoji : '📦';
     const subtotal = (item.price || 0) * (item.qty || 1);
@@ -161,9 +145,13 @@ function applyCoupon(code) {
 
   activeCoupon = { code: upperCode, discount: couponData.discount, label: couponData.label };
 
-  updateSummary(getCart());
-  updateCouponUI();
+  const cart           = getCart();
+  const subtotal       = cart.reduce((sum, i) => sum + (i.price || 0) * (i.qty || 1), 0);
+  const discountAmount = Math.round(subtotal * activeCoupon.discount);
+  localStorage.setItem('exclusive_discount', discountAmount);
 
+  updateSummary(cart);
+  updateCouponUI();
   showToast('Kupon "' + upperCode + '" berhasil! Diskon ' + couponData.label + ' diterapkan.');
 }
 
@@ -173,10 +161,8 @@ function applyCoupon(code) {
 
 function removeCoupon() {
   activeCoupon = null;
-
   updateSummary(getCart());
   updateCouponUI();
-
   showToast('Kupon dihapus.');
 }
 
@@ -239,13 +225,28 @@ function deleteItem(index) {
 }
 
 // ===========================
+// WISHLIST BADGE
+// ===========================
+function getWishlist() {
+  return JSON.parse(localStorage.getItem('exclusive_wishlist') || '[]');
+}
+
+function updateWishlistBadge() {
+  const count = getWishlist().length;
+  const el    = document.getElementById('wishCount');
+  if (!el) return;
+  el.textContent   = count;
+  el.style.display = count > 0 ? 'flex' : 'none';
+}
+// ===========================
 // DOM READY
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
-  // activeCoupon selalu null saat halaman dimuat
+document.addEventListener('DOMContentLoaded', async () => {  // ✅ FIX: tambah keyword 'async'
+  await initProducts();                                       // ✅ FIX: hanya initProducts(), hapus loadProductData()
   renderCart();
   updateCouponUI();
+  updateWishlistBadge();
 
   const updateBtn = document.getElementById('updateCartBtn');
   if (updateBtn) {

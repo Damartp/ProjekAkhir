@@ -181,7 +181,7 @@
     <div class="footer-col">
       <p class="footer-heading">Account</p>
       <ul>
-        <li><a href="#">My Account</a></li>
+        <li><a href="account.php">My Account</a></li>
         <li><a href="login.php">Login / Register</a></li>
         <li><a href="cart.php">Cart</a></li>
         <li><a href="wishlist.php">Wishlist</a></li>
@@ -228,6 +228,7 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
+  <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/details.js"></script>
 </body>
 </html>
