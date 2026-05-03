@@ -98,5 +98,6 @@ if (!isset($_SESSION['user_id'])) {
   </main>
 
   <script src="/ProjekAkhir/Ecommerce/assets/js/account.js"></script>
+  
 </body>
 </html>

@@ -74,16 +74,22 @@ updateCountdown();
 
 function getMusicEndTime() {
   const stored = localStorage.getItem('musicSaleEnd');
-  if (stored) return parseInt(stored);
+  if (stored) {
+    const end = parseInt(stored);
+    if (end > Date.now()) return end; // belum habis, pakai yang lama
+  }
+  // Habis atau belum ada → reset ulang 5 hari
   const end = Date.now() + (5 * 86400000) + (22 * 3600000) + (59 * 60000) + (35 * 1000);
   localStorage.setItem('musicSaleEnd', end.toString());
   return end;
 }
 
-const musicEndTime = getMusicEndTime();
+// musicEndTime diambil dinamis tiap tick
 
 function updateMusicCountdown() {
-  const diff = Math.max(0, musicEndTime - Date.now());
+  const endTime = getMusicEndTime();
+  const diff = endTime - Date.now();
+  if (diff <= 0) { localStorage.removeItem('musicSaleEnd'); return; }
   const pad = n => String(n).padStart(2, '0');
   const elH = document.getElementById('mHours');
   const elD = document.getElementById('mDays');

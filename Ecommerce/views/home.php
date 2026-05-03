@@ -142,8 +142,6 @@ session_start();
         <button class="dot active" data-slide="0"></button>
         <button class="dot" data-slide="1"></button>
         <button class="dot" data-slide="2"></button>
-        <button class="dot" data-slide="3"></button>
-        <button class="dot" data-slide="4"></button>
       </div>
     </div>
 
@@ -765,5 +763,6 @@ session_start();
 
   <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/home.js"></script>
+  <script src="/ProjekAkhir/Ecommerce/assets/js/search.js"></script>
 </body>
 </html>

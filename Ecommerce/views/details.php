@@ -230,5 +230,6 @@
 
   <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/details.js"></script>
+  <script src="/ProjekAkhir/Ecommerce/assets/js/search.js"></script>
 </body>
 </html>

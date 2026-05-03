@@ -18,14 +18,7 @@
       <li><a href="#">About</a></li>
       <li><a href="register.php" class="active">Register </a></li>
     </ul>
-    <div class="search-box">
-      <input type="text" placeholder="What are you looking for?" />
-      <button class="search-btn" aria-label="Search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
+    <div class="">
     </div>
   </nav>
 
@@ -169,6 +162,7 @@
   </footer>
 
   <script src="/ProjekAkhir/Ecommerce/assets/js/login.js"></script>
+  <script src="/ProjekAkhir/Ecommerce/assets/js/search.js"></script>
 
 </body>
 </html>
