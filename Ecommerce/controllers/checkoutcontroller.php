@@ -15,14 +15,14 @@ $order    = new Order($db);
 $userModel= new User($db);
 $action   = $_POST['action'] ?? '';
 
-// Ambil data user untuk pre-fill form
+
 if ($action === 'getUserData') {
     $user = $userModel->getById($_SESSION['user_id']);
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
 }
 
-// Simpan order
+
 if ($action === 'placeOrder') {
     $kota    = trim($_POST['kota']    ?? '');
     $alamat  = trim($_POST['alamat']  ?? '');

@@ -295,7 +295,56 @@ function updateCartBadge() {
 // ===========================
 document.addEventListener('DOMContentLoaded', async () => {
   await initProducts();
+  renderAllSections();
   updateCartBadge();
   updateWishlistBadge();
   syncWishlistButtons();
 });
+// ===========================
+// RENDER PRODUK KE HOME
+// ===========================
+
+function renderProductCard(p) {
+  return `
+    <div class="product-card">
+      <div class="product-img-wrap">
+        ${p.badge ? `<span class="badge badge-${p.badgeType}">${p.badge}</span>` : ''}
+        <div class="product-img">${p.emoji}</div>
+        <div class="product-actions">
+          <button class="wish-btn" data-id="${p.id}" title="Wishlist">♥</button>
+          <a class="view-icon-btn" href="details.php?id=${p.id}" title="View">👁</a>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart(${p.id})">Add To Cart</button>
+      </div>
+      <div class="product-info-card">
+        <p class="product-name-card">
+          <a href="details.php?id=${p.id}" style="color:inherit;text-decoration:none;">${p.name}</a>
+        </p>
+        <div class="product-price-wrap">
+          <span class="price-new">$${p.price}</span>
+          ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ''}
+        </div>
+        <div class="stars-small">
+          ${'★'.repeat(p.stars)}${'☆'.repeat(5 - p.stars)}
+          <span class="review-count-small">(${p.reviews})</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAllSections() {
+  const flashSlider  = document.getElementById('flashSlider');
+  const bestsellGrid = document.getElementById('bestsellGrid');
+  const exploreGrid  = document.getElementById('exploreGrid');
+
+  const flash    = allProducts.filter(p => p.section === 'flash');
+  const bestsell = allProducts.filter(p => p.section === 'bestsell');
+  const explore  = allProducts.filter(p => p.section === 'explore');
+
+  if (flashSlider  && flash.length)    flashSlider.innerHTML    = flash.map(renderProductCard).join('');
+  if (bestsellGrid && bestsell.length) bestsellGrid.innerHTML   = bestsell.map(renderProductCard).join('');
+  if (exploreGrid  && explore.length)  exploreGrid.innerHTML    = explore.map(renderProductCard).join('');
+
+  syncWishlistButtons();
+}

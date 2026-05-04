@@ -7,7 +7,6 @@ class Product {
         $this->conn = $db;
     }
 
-
     public function getAll() {
         $stmt = $this->conn->prepare("SELECT * FROM {$this->table} ORDER BY id");
         $stmt->execute();
@@ -28,5 +27,60 @@ class Product {
         );
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function create($data) {
+        $stmt = $this->conn->prepare(
+            "INSERT INTO {$this->table} 
+             (name, price, old_price, emoji, badge, badge_color, stars, reviews, section)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        );
+        $stmt->execute([
+            $data['name'],
+            $data['price'],
+            $data['old_price'],
+            $data['emoji'],
+            $data['badge'],
+            $data['badge_color'],
+            $data['stars'],
+            $data['reviews'],
+            $data['section'],
+        ]);
+        return $this->conn->lastInsertId();
+    }
+
+    public function update($id, $data) {
+        $stmt = $this->conn->prepare(
+            "UPDATE {$this->table} SET
+             name        = ?,
+             price       = ?,
+             old_price   = ?,
+             emoji       = ?,
+             badge       = ?,
+             badge_color = ?,
+             stars       = ?,
+             reviews     = ?,
+             section     = ?
+             WHERE id    = ?"
+        );
+        return $stmt->execute([
+            $data['name'],
+            $data['price'],
+            $data['old_price'],
+            $data['emoji'],
+            $data['badge'],
+            $data['badge_color'],
+            $data['stars'],
+            $data['reviews'],
+            $data['section'],
+            $id,
+        ]);
+    }
+
+    public function delete($id) {
+        $stmt = $this->conn->prepare(
+            "DELETE FROM {$this->table} WHERE id = ?"
+        );
+        return $stmt->execute([$id]);
     }
 }

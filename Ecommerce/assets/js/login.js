@@ -24,7 +24,11 @@
 
     if (data.success) {
         alert('Login berhasil! Selamat datang, ' + data.user.name);
-        window.location.href = 'home.php';
+        if (data.user.role === 'admin') {
+            window.location.href = 'admin.php';
+        } else {
+            window.location.href = 'home.php';
+        }
     } else {
         alert(data.message);
     }
