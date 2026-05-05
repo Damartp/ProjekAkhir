@@ -348,3 +348,119 @@ function renderAllSections() {
 
   syncWishlistButtons();
 }
+// ===========================
+// CHATBOT
+// ===========================
+
+const chatbotWidget  = document.getElementById('chatbotWidget');
+const chatbotToggle  = document.getElementById('chatbotToggle');
+const chatbotClose   = document.getElementById('chatbotClose');
+const chatbotInput   = document.getElementById('chatbotInput');
+const chatbotSendBtn = document.getElementById('chatbotSend');
+const chatbotMsgs    = document.getElementById('chatbotMessages');
+
+if (chatbotToggle) {
+  chatbotToggle.addEventListener('click', () => {
+    chatbotWidget.classList.toggle('open');
+    if (chatbotWidget.classList.contains('open')) chatbotInput?.focus();
+  });
+}
+if (chatbotClose)   chatbotClose.addEventListener('click', () => chatbotWidget.classList.remove('open'));
+if (chatbotSendBtn) chatbotSendBtn.addEventListener('click', () => chatSend());
+if (chatbotInput)   chatbotInput.addEventListener('keydown', e => { if (e.key === 'Enter') chatSend(); });
+
+function chatSend(text) {
+  const msg = text || chatbotInput?.value.trim();
+  if (!msg) return;
+  if (chatbotInput) chatbotInput.value = '';
+  appendMsg(msg, 'user');
+  // hide suggestions after first message
+  const sugg = document.getElementById('chatbotSuggestions');
+  if (sugg) sugg.style.display = 'none';
+  setTimeout(() => {
+    appendMsg(chatbotReply(msg), 'bot');
+  }, 400);
+}
+
+function appendMsg(text, sender) {
+  const wrap = document.createElement('div');
+  wrap.className = `chat-msg ${sender}`;
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble';
+  bubble.innerHTML = text;
+  wrap.appendChild(bubble);
+  chatbotMsgs.appendChild(wrap);
+  chatbotMsgs.scrollTop = chatbotMsgs.scrollHeight;
+}
+
+function chatbotReply(input) {
+  const q = input.toLowerCase();
+
+  // Flash Sales
+  if (q.includes('flash') || q.includes('sale') || q.includes('diskon')) {
+    return '🔥 <strong>Flash Sales</strong> adalah promo harga spesial dengan waktu terbatas!<br>Produk flash sales ada di bagian <em>Today\'s Flash Sales</em> di halaman utama. Diskon bisa sampai <strong>-40%</strong>! Timer countdown menunjukkan sisa waktu promo. <a href="#section-flash" style="color:#db4444;">→ Lihat Flash Sales</a>';
+  }
+
+  // Wishlist
+  if (q.includes('wishlist') || q.includes('wish') || q.includes('favorit') || q.includes('simpan')) {
+    return '❤️ <strong>Wishlist</strong> berfungsi untuk menyimpan produk favoritmu!<br>Klik ikon ♥ di setiap produk untuk menambahkan. Lihat semua wishlist-mu di halaman <a href="wishlist.php" style="color:#db4444;">Wishlist</a>. Jumlah produk ditampilkan di ikon hati navbar atas.';
+  }
+
+  // Cart
+  if (q.includes('cart') || q.includes('keranjang') || q.includes('beli') || q.includes('checkout')) {
+    return '🛒 <strong>Cara membeli produk:</strong><br>1. Pilih produk yang diinginkan<br>2. Klik tombol <strong>"Add To Cart"</strong><br>3. Buka <a href="cart.php" style="color:#db4444;">Cart</a> di navbar atas<br>4. Lakukan checkout';
+  }
+
+  // Promo / voucher
+  if (q.includes('promo') || q.includes('voucher') || q.includes('diskon') || q.includes('off') || q.includes('hemat')) {
+    return '🏷️ <strong>Promo yang tersedia:</strong><br>• <strong>Summer Sale</strong> – Diskon 50% untuk semua swim suits + free express delivery<br>• <strong>Flash Sales</strong> – Diskon hingga 40%<br>• <strong>Newsletter</strong> – Daftar email di footer untuk dapat diskon <strong>10% pertama</strong>!';
+  }
+
+  // Pengiriman
+  if (q.includes('kirim') || q.includes('delivery') || q.includes('ongkir') || q.includes('pengiriman')) {
+    return '🚚 <strong>Info Pengiriman:</strong><br>• Gratis pengiriman untuk order di atas <strong>$140</strong><br>• Summer Sale: <strong>Free Express Delivery</strong> untuk semua swim suits<br>• Estimasi pengiriman tergantung lokasi';
+  }
+
+  // Garansi / return
+  if (q.includes('garansi') || q.includes('return') || q.includes('refund') || q.includes('uang kembali') || q.includes('money back')) {
+    return '✅ <strong>Money Back Guarantee</strong><br>Kami menjamin pengembalian uang dalam <strong>30 hari</strong> jika produk tidak sesuai. Hubungi customer service untuk proses refund.';
+  }
+
+  // Customer service
+  if (q.includes('cs') || q.includes('customer') || q.includes('bantuan') || q.includes('support') || q.includes('kontak')) {
+    return '🎧 <strong>Customer Service 24/7</strong><br>Kami siap membantu kapan saja!<br>📧 exclusive@gmail.com<br>📞 +88015-88888-9999<br>Atau scroll ke bagian <a href="#section-features" style="color:#db4444;">Contact</a> di halaman ini.';
+  }
+
+  // New Arrival
+  if (q.includes('new') || q.includes('baru') || q.includes('arrival') || q.includes('terbaru')) {
+    return '✨ <strong>New Arrival</strong> tersedia di halaman utama!<br>Produk terbaru meliputi:<br>• 🎮 PlayStation 5<br>• 👗 Women\'s Collections<br>• 🔊 Speakers<br>• 🧴 Perfume Gucci<br><a href="#section-arrival" style="color:#db4444;">→ Lihat New Arrival</a>';
+  }
+
+  // Kategori produk
+  if (q.includes('kategori') || q.includes('produk') || q.includes('apa saja') || q.includes('jual')) {
+    return '🛍️ <strong>Kategori produk di Exclusive:</strong><br>• 👗 Woman\'s & Men\'s Fashion<br>• 💻 Electronics & Gaming<br>• 🏠 Home & Lifestyle<br>• 💊 Medicine<br>• ⚽ Sports & Outdoor<br>• 🧸 Baby\'s & Toys<br>• 🛒 Groceries & Pets<br>• 💄 Health & Beauty';
+  }
+
+  // Register / login / akun
+  if (q.includes('daftar') || q.includes('register') || q.includes('login') || q.includes('akun') || q.includes('sign')) {
+    return '👤 <strong>Akun Exclusive:</strong><br>• Belum punya akun? <a href="register.php" style="color:#db4444;">Daftar sekarang</a><br>• Sudah punya akun? <a href="login.php" style="color:#db4444;">Login di sini</a><br>• Kelola akun di ikon 👤 navbar kanan atas';
+  }
+
+  // App download
+  if (q.includes('app') || q.includes('aplikasi') || q.includes('download') || q.includes('mobile')) {
+    return '📱 <strong>Download Aplikasi Exclusive</strong><br>Hemat $3 untuk pengguna baru!<br>Tersedia di:<br>• Google Play<br>• App Store<br>Scan QR code di footer halaman ini.';
+  }
+
+  // Halo / sapaan
+  if (q.includes('halo') || q.includes('hai') || q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+    return 'Halo! 👋 Selamat datang di <strong>Exclusive</strong>! Saya siap membantu kamu belanja. Mau tanya soal apa?';
+  }
+
+  // Terima kasih
+  if (q.includes('terima kasih') || q.includes('makasih') || q.includes('thanks') || q.includes('thank')) {
+    return 'Sama-sama! 😊 Senang bisa membantu. Ada lagi yang ingin ditanyakan?';
+  }
+
+  // Default
+  return 'Hmm, saya belum mengerti pertanyaan itu 🤔<br>Coba tanyakan tentang:<br>• 🔥 Flash Sales<br>• ❤️ Wishlist<br>• 🛒 Cart & Checkout<br>• 🚚 Pengiriman<br>• 🎧 Customer Service';
+}

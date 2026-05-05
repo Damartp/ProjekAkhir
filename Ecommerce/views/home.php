@@ -35,6 +35,16 @@ session_start();
       <li><a href="register.php">Sign Up</a></li>
     </ul>
     <div class="nav-actions">
+      <!-- CHATBOT BUTTON -->
+      <button class="icon-btn chatbot-toggle-btn" id="chatbotToggle" aria-label="Chatbot Assistant" title="Ask Assistant">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="13" rx="3"/>
+          <path d="M8 16v3l4-3h5"/>
+          <circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="9" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </button>
       <div class="search-box">
         <input type="text" placeholder="What are you looking for?" id="searchInput" />
         <button class="search-btn" id="searchBtn" aria-label="Search">
@@ -760,6 +770,50 @@ session_start();
 
   <!-- Cart Toast -->
   <div class="cart-toast" id="cartToast"></div>
+
+  <!-- ===================== CHATBOT WIDGET ===================== -->
+  <div class="chatbot-widget" id="chatbotWidget">
+    <div class="chatbot-header">
+      <div class="chatbot-header-left">
+        <div class="chatbot-avatar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="13" rx="3"/>
+            <path d="M8 16v3l4-3h5"/>
+            <circle cx="9" cy="9" r="1" fill="white" stroke="none"/>
+            <circle cx="12" cy="9" r="1" fill="white" stroke="none"/>
+            <circle cx="15" cy="9" r="1" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        <div>
+          <div class="chatbot-name">Exclusive Assistant</div>
+          <div class="chatbot-status">● Online</div>
+        </div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble">Halo! 👋 Saya asisten <strong>Exclusive</strong>. Ada yang bisa saya bantu?<br><br>
+        Tanya saya tentang:<br>
+        🔥 Flash Sales · ❤️ Wishlist · 🛒 Cart · 🚚 Pengiriman · 🏷️ Promo
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-suggestions" id="chatbotSuggestions">
+      <button onclick="chatSend('Apa itu Flash Sales?')">🔥 Flash Sales</button>
+      <button onclick="chatSend('Cara pakai wishlist?')">❤️ Wishlist</button>
+      <button onclick="chatSend('Cara beli produk?')">🛒 Cara Beli</button>
+      <button onclick="chatSend('Promo apa yang ada?')">🏷️ Promo</button>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbotInput" placeholder="Ketik pertanyaan..." autocomplete="off"/>
+      <button id="chatbotSend">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <script src="/ProjekAkhir/Ecommerce/assets/js/products.js"></script>
   <script src="/ProjekAkhir/Ecommerce/assets/js/home.js"></script>
