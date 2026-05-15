@@ -1,16 +1,30 @@
 /* ===========================
    RESET & BASE
 =========================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
   color: #333;
-  background: #fff;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
 }
 
 a {
@@ -92,6 +106,7 @@ ul {
 =========================== */
 .main-section {
   display: flex;
+  flex: 1;
   min-height: calc(100vh - 64px - 260px);
 }
 
